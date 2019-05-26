@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <UserSecretsId>aspnet-AirConditioner.Web-1D806E2C-1982-461E-A08B-C7D688B13970</UserSecretsId>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\lib\bootstrap-v4-rtl\dist\css\bootstrap-grid.css.map" />
+    <None Include="wwwroot\lib\bootstrap-v4-rtl\dist\css\bootstrap-grid.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap-v4-rtl\dist\css\bootstrap-reboot.css.map" />
+    <None Include="wwwroot\lib\bootstrap-v4-rtl\dist\css\bootstrap-reboot.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap-v4-rtl\dist\css\bootstrap-rtl.css.map" />
+    <None Include="wwwroot\lib\bootstrap-v4-rtl\dist\css\bootstrap-rtl.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap-v4-rtl\dist\css\bootstrap.css.map" />
+    <None Include="wwwroot\lib\bootstrap-v4-rtl\dist\css\bootstrap.min.css.map" />
+    <None Include="wwwroot\lib\bootstrap-v4-rtl\dist\js\bootstrap.bundle.js" />
+    <None Include="wwwroot\lib\bootstrap-v4-rtl\dist\js\bootstrap.bundle.js.map" />
+    <None Include="wwwroot\lib\bootstrap-v4-rtl\dist\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\lib\bootstrap-v4-rtl\dist\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap-v4-rtl\dist\js\bootstrap.js" />
+    <None Include="wwwroot\lib\bootstrap-v4-rtl\dist\js\bootstrap.js.map" />
+    <None Include="wwwroot\lib\bootstrap-v4-rtl\dist\js\bootstrap.min.js" />
+    <None Include="wwwroot\lib\bootstrap-v4-rtl\dist\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\lib\bootstrap-v4-rtl\README.md" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="bootstrap" Version="4.3.1" />
+    <PackageReference Include="bootstrap-rtl" Version="3.3.6" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="1.0.172" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\AirConditioner.Application.DependencyInjection\AirConditioner.Application.DependencyInjection.csproj" />
+    <ProjectReference Include="..\AirConditioner.Data\AirConditioner.Data.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\assets\plugins\jquery-file-upload\server\php\files\thumbnail\" />
+  </ItemGroup>
+
+</Project>

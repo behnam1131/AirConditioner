@@ -1,0 +1,93 @@
+﻿@model IEnumerable<AirConditioner.Core.Dtos.FactorDto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a asp-action="Add">ثبت فاکتور</a>
+</p>
+<table class="table" style="direction:rtl">
+    <thead>
+        <tr>          
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateFa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Time)
+            </th>           
+            <th>
+                @Html.DisplayNameFor(model => model.Comment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AirConditionerModelName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EngineVolumeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserExpertName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserOperatorName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserTechnicianName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserAssistantName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateFa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+           <td>
+                @Html.DisplayFor(modelItem => item.Comment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AirConditionerModelName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EngineVolumeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserExpertName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserOperatorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserTechnicianName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserAssistantName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @*@Html.ActionLink("ویرایش", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("جزییات", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("حذف", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

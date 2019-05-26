@@ -1,0 +1,558 @@
+﻿@model AirConditioner.Core.Dtos.FactorDto
+
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h4>ثبت فاکتور</h4>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Add">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">اطلاعات کولر</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label asp-for="AirConditionerModelId" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                @Html.DropDownList("AirConditionerModelId", ViewBag.AirConditionerModelList as SelectList, new { @class = "form-control" })
+
+                                                <span asp-validation-for="AirConditionerModelId" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        @*<input asp-for="AirConditionerId" class="form-control" />*@
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label asp-for="EngineVolumeId" class="control-label"></label>
+                                            </div> 
+                                            <div class="col-md-8">
+                                                @Html.DropDownList("EngineVolumeId", ViewBag.EngineVolumeList as SelectList, new { @class = "form-control" })
+                                                <span asp-validation-for="EngineVolumeId" class="text-danger"></span>
+                                            </div>
+                                        </div>                                      
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">اطلاعات کارفرما و کارپذیر</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label asp-for="Code" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <input asp-for="Code" class="form-control" />
+                                                <span asp-validation-for="Code" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            
+                                            <div class="col-md-4">
+                                                <label asp-for="CustomerId" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                @Html.DropDownList("CustomerId", ViewBag.CustomerList as SelectList, new { @class = "form-control" })
+                                            
+                                                <span asp-validation-for="CustomerId" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        @*<input asp-for="CustomerId" class="form-control" />*@
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label asp-for="UserExpertId" class="control-label"></label>
+
+                                            </div>
+                                            <div class="col-md-8">
+                                                @Html.DropDownList("UserExpertId", ViewBag.UserExpertList as SelectList, new { @class = "form-control" })
+
+                                                <span asp-validation-for="UserExpertId" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label asp-for="UserOperatorId" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                @Html.DropDownList("UserOperatorId", ViewBag.UserOperatorList as SelectList, new { @class = "form-control" })
+
+                                                <span asp-validation-for="UserOperatorId" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label asp-for="UserTechnicianId" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                @Html.DropDownList("UserTechnicianId", ViewBag.UserTechnicianList as SelectList, new { @class = "form-control" })
+
+                                                <span asp-validation-for="UserTechnicianId" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label asp-for="UserAssistantId" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                @Html.DropDownList("UserAssistantId", ViewBag.UserAssistantList as SelectList, new { @class = "form-control" })
+
+                                                <span asp-validation-for="UserAssistantId" class="text-danger"></span>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+          
+            <div class="panel panel-success">
+                <div class="panel-heading">سایر اطلاعات</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label asp-for="DateFa" class="control-label"></label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input asp-for="DateFa" class="form-control" />
+                                        <span asp-validation-for="DateFa" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label asp-for="Time" class="control-label"></label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input asp-for="Time" class="form-control" />
+                                        <span asp-validation-for="Time" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-1">
+                                        <label asp-for="Comment" class="control-label"></label>
+                                    </div>
+                                    <div class="col-md-11">
+                                        <textarea asp-for="Comment" rows="3" class="form-control"></textarea>
+                                        <span asp-validation-for="Comment" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">سایر اطلاعات</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="row" style="margin-bottom:6px">
+                               
+                                        <div class="col-md-4">
+                                            <label class="control-label">قطعه</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <select id="piece" style="width:113px" class="form-control"></select>
+                                        </div>
+
+                            </div>
+                            <div class="row" style="margin-bottom:6px">
+                               
+                                        <div class="col-md-4">
+                                            <label class="control-label">تعداد</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="text" id="pieceCount" style="width:113px" class="form-control" />
+                                        </div>
+
+                            </div>
+                            <div class="row" style="margin-bottom:6px">
+                                <div class="form-group"  style="text-align:center">
+                                    <input type="button" Id="savePiece" style="width:100%;" class="btn btn-success" value="ثبت" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <label class="control-label">قیمت</label>
+                                <label id="price"></label>
+
+                            </div>
+                            <hr />
+                            <div class="form-group">
+                                <label class="control-label">قیمت کل</label>
+                                <br />
+                                <label id="totalPrice"></label>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-9">
+                            <table id="tablePiece" class="table table-bordered ">
+                                <thead>
+                                    <tr>
+                                        <th>ردیف</th>
+                                        <th>قطعه</th>
+                                        <th>قیمت</th>
+                                        <th>تعداد</th>
+                                        <th>قیمت کل</th>
+                                        <th>امکانات</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tfoot>
+
+                                </tfoot>
+                            </table>
+
+                            <div hidden id="FactorPiece">
+
+                            </div>
+                            <div hidden id="FactorWork">
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                    <hr />
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="row" style="margin-bottom:6px">
+                                <div class="col-md-5">
+                                    <label class="control-label">خدمات </label>
+                                </div>
+                                <div class="col-md-7">
+                                    <select id="work" class="form-control"></select>
+                                </div>
+
+                            </div>
+                            <div class="row" style="margin-bottom:6px">
+                                <div class="col-md-5">
+                                    <label class="control-label">قیمت  </label>
+                                </div>
+                                <div class="col-md-7">
+                                    <input type="text" id="priceWork" class="form-control" />
+                                </div>
+
+                            </div>
+                            <div class="row" style="margin-bottom:6px">
+                                <div class="col-md-5">
+                                    <label class="control-label">توضیحات </label>
+                                </div>
+                                <div class="col-md-7">
+                                    <textarea id="commentWork" rows="4" class="form-control"></textarea>
+                                </div>
+                                
+                            </div>
+                            <div class="row" style="text-align:center">
+                                <input type="button" Id="saveWork" class="btn btn-success" style="width: 65%;display: list-item;" value="ثبت" />
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <table id="tableWork" class="table table-bordered " style="direction: rtl;">
+                                <thead>
+                                    <tr>
+                                        <th>ردیف</th>
+                                        <th>کارهای انجام شده</th>
+                                        <th>قیمت</th>
+                                        <th>توضیحات</th>
+                                        <th>امکانات</th>  
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                                <tfoot>
+                                </tfoot>
+                            </table>
+
+                            <div hidden id="FactorPiece"></div>
+                            <div hidden id="FactorWork"></div>
+                        </div>                     
+
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="form-group"  style="text-align:center">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts
+{
+    <script>
+
+        var pieceList;
+        var workList;
+
+        var performLoad = function () {
+            $.ajax({
+                type: "POST",
+                url: "/factor/GetAllPiece",
+                dataType: "json",
+            }).done(function (dates) {
+                pieceList = dates;
+                $("#piece").append('<option value="">انتخاب ...</option>');
+                console.log(dates)
+                $.each(dates, function (index, item) {
+                    $("#piece").append('<option value="' + item.id + '">' + item.name + '</option>');
+                });
+            });
+
+
+            $.ajax({
+                type: "POST",
+                url: "/factor/GetAllWork",
+                dataType: "json",
+            }).done(function (dates) {
+                workList = dates;
+                $("#work").append('<option value="">انتخاب ...</option>');
+                
+                $.each(dates, function (index, item) {
+                    $("#work").append('<option value="' + item.id + '">' + item.name + '</option>');
+                });
+            });
+
+        }
+       
+
+        var pieceOnChange = function ()
+        {
+            var pieceId = $("#piece").val();
+           
+            var pieceCount = $("#pieceCount").val();
+            var price=pieceList.find(piece => piece.id == pieceId).price;
+
+            $("#price").empty();
+            $("#totalPrice").empty();
+
+            $("#price").append('<span>' + price + '</span>');
+            $("#totalPrice").append('<span>' + pieceCount * price + '</span>');
+            
+        }
+
+
+
+        var addWorkToTable = function () {
+            var workId = $("#work").val();
+            var priceWork = $("#priceWork").val();
+            var commentWork = $("#commentWork").val();
+            var work = workList.find(work => work.id == workId);
+
+            var rowCount = $("#tableWork tbody tr").length;
+
+            $("#tableWork tbody").append('<tr val=' + work.id + '><td>' +
+                (rowCount + 1) + '</td><td> ' +
+                work.name + "</td ><td class='priceWork'>" +
+                priceWork + "</td><td class='commentWork'>" +                
+                commentWork + "</td><td><span class='removeWork'>حدف</span></td></tr>");
+
+
+
+            updateWorkTable();
+
+        }
+
+        var updateWorkTable = function () {
+            var sumPrice = 0;
+
+            $(".priceWork").each(function () {
+                var value = $(this).text();
+                if (!isNaN(value) && value.length != 0) {
+                    sumPrice += parseFloat(value);
+                }
+            });
+
+            $("#tableWork tfoot").empty();
+            $("#tableWork tfoot").append('<tr><td></td><td></td><td>جمع کل : ' +
+                sumPrice + '</td><td></td><td></td ></tr>');
+
+
+          
+            $("#FactorWork").empty();
+
+            $("#tableWork tbody tr").each(function (index, item) {
+                var workId = $(item).attr('val');                
+                var workComment = $(item).find(".commentWork").text();
+                var workPrice = $(item).find(".priceWork").text();
+                var i = (index + 1);
+
+                $(this).find("td:first").empty();
+                $(this).find("td:first").append(i);
+
+                if (!isNaN(workId) && workId.length != 0 && !isNaN(workPrice) && workPrice.length != 0) {
+                    $("#FactorWork").append("<input name='FactorWorkDtos[" + index + "].WorkId' value='" + workId + "' />");
+                    $("#FactorWork").append("<input name='FactorWorkDtos[" + index + "].Comment' value='" + workComment + "' />");
+                    $("#FactorWork").append("<input name='FactorWorkDtos[" + index + "].Price' value='" + workPrice + "' />");
+                }
+            });
+        }
+
+
+
+        var addPieceToTable = function () {
+            var pieceId = $("#piece").val();
+            var pieceCount = $("#pieceCount").val();
+            var piece = pieceList.find(piece => piece.id == pieceId);
+
+            var rowCount = $("#tablePiece tbody tr").length;
+
+            $("#tablePiece tbody").append('<tr val=' + piece.id + '><td>' +
+                (rowCount + 1) + '</td><td> ' +
+                piece.name + "</td ><td class='price'>" +
+                piece.price + "</td><td class='count'>" +
+                pieceCount + "</td><td class='priceTotal'>" +
+                (pieceCount * piece.price) + "</td><td><span class='removePiece'>حدف</span></td></tr>");
+
+
+
+            updatePieceTable();
+
+        }
+
+        var updatePieceTable = function () {
+            var sunPrice = 0;
+
+            $(".priceTotal").each(function () {
+                var value = $(this).text();
+                if (!isNaN(value) && value.length != 0) {
+                    sunPrice += parseFloat(value);
+                }
+            });
+
+            $("#tablePiece tfoot").empty();
+            $("#tablePiece tfoot").append('<tr><td></td><td></td ><td></td><td></td><td>جمع کل : ' +
+                sunPrice + '</td></tr>');
+
+
+            
+            $("#FactorPiece").empty();
+
+            $("#tablePiece tbody tr").each(function (index, item) {
+                var pieceId = $(item).attr('val');
+                var pieceCount = $(item).find(".count").text();
+                var priceOne = $(item).find(".price").text();
+                var i = (index + 1);
+
+                $(this).find("td:first").empty();
+                $(this).find("td:first").append(i);
+
+                if (!isNaN(pieceId) && pieceId.length != 0 && !isNaN(pieceCount) && pieceCount.length != 0) {
+                    $("#FactorPiece").append("<input name='FactorPieceDtos[" + index + "].PieceId' value='" + pieceId + "' />");
+                    $("#FactorPiece").append("<input name='FactorPieceDtos[" + index + "].PriceOne' value='" + priceOne + "' />");
+                    $("#FactorPiece").append("<input name='FactorPieceDtos[" + index + "].Value' value='" + pieceCount + "' />");
+                }
+            });  
+        }
+
+
+
+        var removePieceFromTable = function () {
+
+            $(this).parent().parent().remove();
+
+            updatePieceTable();
+
+        }
+        var removeWorkFromTable = function () {
+
+            $(this).parent().parent().remove();
+
+            updateWorkTable();
+
+        }
+
+
+        var init = function () {
+
+            $("#piece").on("change", pieceOnChange);
+            $("#pieceCount").on("keyup", pieceOnChange);
+            $("#savePiece").on("click", addPieceToTable); 
+            $("#saveWork").on("click", addWorkToTable); 
+            $("#tablePiece").on("click", '.removePiece', removePieceFromTable); 
+            $("#tableWork").on("click", '.removeWork', removeWorkFromTable); 
+
+
+            performLoad();
+        }
+        
+        init();
+
+    </script>
+
+}
