@@ -24,10 +24,9 @@ namespace AirConditioner.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("AirConditioner")));
-
+            services.AddEntityFrameworkNpgsql()
+                .AddDbContext<ApplicationDbContext>()
+                .BuildServiceProvider();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme) // Sets the default scheme to cookies
                .AddCookie(options => options.LoginPath = "/account/login");

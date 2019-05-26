@@ -1,24 +1,24 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace AirConditioner.Data.Migrations
 {
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "AirConditionerNames",
+                name: "AirConditionerModels",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AirConditionerNames", x => x.Id);
+                    table.PrimaryKey("PK_AirConditionerModels", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -65,7 +65,7 @@ namespace AirConditioner.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(nullable: true),
                     Phone = table.Column<string>(nullable: true),
                     address = table.Column<string>(nullable: true)
@@ -76,16 +76,16 @@ namespace AirConditioner.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EngineVolumes",
+                name: "EngineVolume",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EngineVolumes", x => x.Id);
+                    table.PrimaryKey("PK_EngineVolume", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -93,7 +93,7 @@ namespace AirConditioner.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Title = table.Column<string>(nullable: true),
                     Code = table.Column<int>(nullable: false)
                 },
@@ -107,7 +107,7 @@ namespace AirConditioner.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(nullable: true),
                     Price = table.Column<double>(nullable: false),
                     Percent = table.Column<int>(nullable: false)
@@ -122,7 +122,7 @@ namespace AirConditioner.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(nullable: true),
                     Phone = table.Column<string>(nullable: true)
                 },
@@ -136,7 +136,7 @@ namespace AirConditioner.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(nullable: true),
                     Phone = table.Column<string>(nullable: true)
                 },
@@ -150,7 +150,7 @@ namespace AirConditioner.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(nullable: true),
                     Phone = table.Column<string>(nullable: true)
                 },
@@ -164,7 +164,7 @@ namespace AirConditioner.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Name = table.Column<string>(nullable: true),
                     Phone = table.Column<string>(nullable: true)
                 },
@@ -174,11 +174,24 @@ namespace AirConditioner.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Works",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Works", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -199,7 +212,7 @@ namespace AirConditioner.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -219,8 +232,8 @@ namespace AirConditioner.Data.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    ProviderKey = table.Column<string>(nullable: false),
                     ProviderDisplayName = table.Column<string>(nullable: true),
                     UserId = table.Column<string>(nullable: false)
                 },
@@ -264,8 +277,8 @@ namespace AirConditioner.Data.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<string>(nullable: false),
-                    LoginProvider = table.Column<string>(maxLength: 128, nullable: false),
-                    Name = table.Column<string>(maxLength: 128, nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
                     Value = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -284,7 +297,7 @@ namespace AirConditioner.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Title = table.Column<string>(nullable: true),
                     Code = table.Column<int>(nullable: false),
                     EnumTypeId = table.Column<int>(nullable: false)
@@ -305,12 +318,12 @@ namespace AirConditioner.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     DateFa = table.Column<string>(nullable: true),
                     Time = table.Column<string>(nullable: true),
                     ChangeDateTime = table.Column<DateTime>(nullable: false),
                     Percent = table.Column<int>(nullable: false),
-                    PieceId = table.Column<int>(nullable: true)
+                    PieceId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -320,7 +333,7 @@ namespace AirConditioner.Data.Migrations
                         column: x => x.PieceId,
                         principalTable: "Pieces",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -328,12 +341,12 @@ namespace AirConditioner.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     DateFa = table.Column<string>(nullable: true),
                     Time = table.Column<string>(nullable: true),
                     ChangeDateTime = table.Column<DateTime>(nullable: false),
-                    price = table.Column<double>(nullable: false),
-                    PieceId = table.Column<int>(nullable: true)
+                    Price = table.Column<double>(nullable: false),
+                    PieceId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -343,7 +356,7 @@ namespace AirConditioner.Data.Migrations
                         column: x => x.PieceId,
                         principalTable: "Pieces",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -351,13 +364,13 @@ namespace AirConditioner.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
                     Code = table.Column<int>(nullable: false),
                     DateFa = table.Column<string>(nullable: true),
                     Time = table.Column<string>(nullable: true),
                     ChangeDateTime = table.Column<DateTime>(nullable: false),
-                    comment = table.Column<string>(nullable: true),
-                    AirConditionerNameId = table.Column<int>(nullable: false),
+                    Comment = table.Column<string>(nullable: true),
+                    AirConditionerModelId = table.Column<int>(nullable: false),
                     EngineVolumeId = table.Column<int>(nullable: false),
                     UserExpertId = table.Column<int>(nullable: false),
                     UserOperatorId = table.Column<int>(nullable: false),
@@ -369,9 +382,9 @@ namespace AirConditioner.Data.Migrations
                 {
                     table.PrimaryKey("PK_Factors", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Factors_AirConditionerNames_AirConditionerNameId",
-                        column: x => x.AirConditionerNameId,
-                        principalTable: "AirConditionerNames",
+                        name: "FK_Factors_AirConditionerModels_AirConditionerModelId",
+                        column: x => x.AirConditionerModelId,
+                        principalTable: "AirConditionerModels",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -381,9 +394,9 @@ namespace AirConditioner.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Factors_EngineVolumes_EngineVolumeId",
+                        name: "FK_Factors_EngineVolume_EngineVolumeId",
                         column: x => x.EngineVolumeId,
-                        principalTable: "EngineVolumes",
+                        principalTable: "EngineVolume",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -413,32 +426,60 @@ namespace AirConditioner.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "FactorPiecePrices",
+                name: "FactorPieces",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    comment = table.Column<string>(nullable: true),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    Comment = table.Column<string>(nullable: true),
                     IsChange = table.Column<bool>(nullable: false),
-                    Value = table.Column<float>(nullable: false),
-                    priceOne = table.Column<float>(nullable: false),
-                    priceTotal = table.Column<float>(nullable: false),
-                    PiecePriceId = table.Column<int>(nullable: false),
+                    Value = table.Column<double>(nullable: false),
+                    PriceOne = table.Column<double>(nullable: false),
+                    PriceTotal = table.Column<double>(nullable: false),
+                    PieceId = table.Column<int>(nullable: false),
                     FactorId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FactorPiecePrices", x => x.Id);
+                    table.PrimaryKey("PK_FactorPieces", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_FactorPiecePrices_Factors_FactorId",
+                        name: "FK_FactorPieces_Factors_FactorId",
                         column: x => x.FactorId,
                         principalTable: "Factors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_FactorPiecePrices_PiecePrices_PiecePriceId",
-                        column: x => x.PiecePriceId,
-                        principalTable: "PiecePrices",
+                        name: "FK_FactorPieces_Pieces_PieceId",
+                        column: x => x.PieceId,
+                        principalTable: "Pieces",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FactorWorks",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn),
+                    Comment = table.Column<string>(nullable: true),
+                    Price = table.Column<double>(nullable: false),
+                    FactorId = table.Column<int>(nullable: false),
+                    WorkId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FactorWorks", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FactorWorks_Factors_FactorId",
+                        column: x => x.FactorId,
+                        principalTable: "Factors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FactorWorks_Works_WorkId",
+                        column: x => x.WorkId,
+                        principalTable: "Works",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -452,8 +493,7 @@ namespace AirConditioner.Data.Migrations
                 name: "RoleNameIndex",
                 table: "AspNetRoles",
                 column: "NormalizedName",
-                unique: true,
-                filter: "[NormalizedName] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetUserClaims_UserId",
@@ -479,8 +519,7 @@ namespace AirConditioner.Data.Migrations
                 name: "UserNameIndex",
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
-                unique: true,
-                filter: "[NormalizedUserName] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_EnumMembers_EnumTypeId",
@@ -488,19 +527,19 @@ namespace AirConditioner.Data.Migrations
                 column: "EnumTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FactorPiecePrices_FactorId",
-                table: "FactorPiecePrices",
+                name: "IX_FactorPieces_FactorId",
+                table: "FactorPieces",
                 column: "FactorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FactorPiecePrices_PiecePriceId",
-                table: "FactorPiecePrices",
-                column: "PiecePriceId");
+                name: "IX_FactorPieces_PieceId",
+                table: "FactorPieces",
+                column: "PieceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Factors_AirConditionerNameId",
+                name: "IX_Factors_AirConditionerModelId",
                 table: "Factors",
-                column: "AirConditionerNameId");
+                column: "AirConditionerModelId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Factors_CustomerId",
@@ -531,6 +570,16 @@ namespace AirConditioner.Data.Migrations
                 name: "IX_Factors_UserTechnicianId",
                 table: "Factors",
                 column: "UserTechnicianId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FactorWorks_FactorId",
+                table: "FactorWorks",
+                column: "FactorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FactorWorks_WorkId",
+                table: "FactorWorks",
+                column: "WorkId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_piecePercents_PieceId",
@@ -564,10 +613,16 @@ namespace AirConditioner.Data.Migrations
                 name: "EnumMembers");
 
             migrationBuilder.DropTable(
-                name: "FactorPiecePrices");
+                name: "FactorPieces");
+
+            migrationBuilder.DropTable(
+                name: "FactorWorks");
 
             migrationBuilder.DropTable(
                 name: "piecePercents");
+
+            migrationBuilder.DropTable(
+                name: "PiecePrices");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -582,16 +637,19 @@ namespace AirConditioner.Data.Migrations
                 name: "Factors");
 
             migrationBuilder.DropTable(
-                name: "PiecePrices");
+                name: "Works");
 
             migrationBuilder.DropTable(
-                name: "AirConditionerNames");
+                name: "Pieces");
+
+            migrationBuilder.DropTable(
+                name: "AirConditionerModels");
 
             migrationBuilder.DropTable(
                 name: "Customers");
 
             migrationBuilder.DropTable(
-                name: "EngineVolumes");
+                name: "EngineVolume");
 
             migrationBuilder.DropTable(
                 name: "UserAssistants");
@@ -604,9 +662,6 @@ namespace AirConditioner.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "UserTechnicians");
-
-            migrationBuilder.DropTable(
-                name: "Pieces");
         }
     }
 }

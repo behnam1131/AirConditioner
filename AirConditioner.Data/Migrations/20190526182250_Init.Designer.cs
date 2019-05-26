@@ -3,42 +3,40 @@ using System;
 using AirConditioner.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace AirConditioner.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190425131355_init")]
-    partial class init
+    [Migration("20190526182250_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("AirConditioner.Core.Models.AirConditionerName", b =>
+            modelBuilder.Entity("AirConditioner.Core.Models.AirConditionerModel", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
 
-                    b.ToTable("AirConditionerNames");
+                    b.ToTable("AirConditionerModels");
                 });
 
             modelBuilder.Entity("AirConditioner.Core.Models.Customer", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
 
@@ -54,21 +52,19 @@ namespace AirConditioner.Data.Migrations
             modelBuilder.Entity("AirConditioner.Core.Models.EngineVolume", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
 
-                    b.ToTable("EngineVolumes");
+                    b.ToTable("EngineVolume");
                 });
 
             modelBuilder.Entity("AirConditioner.Core.Models.EnumMember", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("Code");
 
@@ -86,8 +82,7 @@ namespace AirConditioner.Data.Migrations
             modelBuilder.Entity("AirConditioner.Core.Models.EnumType", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("Code");
 
@@ -101,14 +96,15 @@ namespace AirConditioner.Data.Migrations
             modelBuilder.Entity("AirConditioner.Core.Models.Factor", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
-                    b.Property<int>("AirConditionerNameId");
+                    b.Property<int>("AirConditionerModelId");
 
                     b.Property<DateTime>("ChangeDateTime");
 
                     b.Property<int>("Code");
+
+                    b.Property<string>("Comment");
 
                     b.Property<int>("CustomerId");
 
@@ -126,11 +122,9 @@ namespace AirConditioner.Data.Migrations
 
                     b.Property<int>("UserTechnicianId");
 
-                    b.Property<string>("comment");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("AirConditionerNameId");
+                    b.HasIndex("AirConditionerModelId");
 
                     b.HasIndex("CustomerId");
 
@@ -147,40 +141,60 @@ namespace AirConditioner.Data.Migrations
                     b.ToTable("Factors");
                 });
 
-            modelBuilder.Entity("AirConditioner.Core.Models.FactorPiecePrice", b =>
+            modelBuilder.Entity("AirConditioner.Core.Models.FactorPiece", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Comment");
 
                     b.Property<int>("FactorId");
 
                     b.Property<bool>("IsChange");
 
-                    b.Property<int>("PiecePriceId");
+                    b.Property<int>("PieceId");
 
-                    b.Property<float>("Value");
+                    b.Property<double>("PriceOne");
 
-                    b.Property<string>("comment");
+                    b.Property<double>("PriceTotal");
 
-                    b.Property<float>("priceOne");
-
-                    b.Property<float>("priceTotal");
+                    b.Property<double>("Value");
 
                     b.HasKey("Id");
 
                     b.HasIndex("FactorId");
 
-                    b.HasIndex("PiecePriceId");
+                    b.HasIndex("PieceId");
 
-                    b.ToTable("FactorPiecePrices");
+                    b.ToTable("FactorPieces");
+                });
+
+            modelBuilder.Entity("AirConditioner.Core.Models.FactorWork", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Comment");
+
+                    b.Property<int>("FactorId");
+
+                    b.Property<double>("Price");
+
+                    b.Property<int>("WorkId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FactorId");
+
+                    b.HasIndex("WorkId");
+
+                    b.ToTable("FactorWorks");
                 });
 
             modelBuilder.Entity("AirConditioner.Core.Models.Piece", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
 
@@ -196,8 +210,7 @@ namespace AirConditioner.Data.Migrations
             modelBuilder.Entity("AirConditioner.Core.Models.PiecePercent", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("ChangeDateTime");
 
@@ -205,7 +218,7 @@ namespace AirConditioner.Data.Migrations
 
                     b.Property<int>("Percent");
 
-                    b.Property<int?>("PieceId");
+                    b.Property<int>("PieceId");
 
                     b.Property<string>("Time");
 
@@ -219,18 +232,17 @@ namespace AirConditioner.Data.Migrations
             modelBuilder.Entity("AirConditioner.Core.Models.PiecePrice", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("ChangeDateTime");
 
                     b.Property<string>("DateFa");
 
-                    b.Property<int?>("PieceId");
+                    b.Property<int>("PieceId");
+
+                    b.Property<double>("Price");
 
                     b.Property<string>("Time");
-
-                    b.Property<double>("price");
 
                     b.HasKey("Id");
 
@@ -242,8 +254,7 @@ namespace AirConditioner.Data.Migrations
             modelBuilder.Entity("AirConditioner.Core.Models.UserAssistant", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
 
@@ -257,8 +268,7 @@ namespace AirConditioner.Data.Migrations
             modelBuilder.Entity("AirConditioner.Core.Models.UserExpert", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
 
@@ -272,8 +282,7 @@ namespace AirConditioner.Data.Migrations
             modelBuilder.Entity("AirConditioner.Core.Models.UserOperator", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
 
@@ -287,8 +296,7 @@ namespace AirConditioner.Data.Migrations
             modelBuilder.Entity("AirConditioner.Core.Models.UserTechnician", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
 
@@ -297,6 +305,18 @@ namespace AirConditioner.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserTechnicians");
+                });
+
+            modelBuilder.Entity("AirConditioner.Core.Models.Work", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Works");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -317,8 +337,7 @@ namespace AirConditioner.Data.Migrations
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
+                        .HasName("RoleNameIndex");
 
                     b.ToTable("AspNetRoles");
                 });
@@ -326,8 +345,7 @@ namespace AirConditioner.Data.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("ClaimType");
 
@@ -388,8 +406,7 @@ namespace AirConditioner.Data.Migrations
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+                        .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -397,8 +414,7 @@ namespace AirConditioner.Data.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("ClaimType");
 
@@ -416,11 +432,9 @@ namespace AirConditioner.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("ProviderKey")
-                        .HasMaxLength(128);
+                    b.Property<string>("ProviderKey");
 
                     b.Property<string>("ProviderDisplayName");
 
@@ -451,11 +465,9 @@ namespace AirConditioner.Data.Migrations
                 {
                     b.Property<string>("UserId");
 
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(128);
+                    b.Property<string>("Name");
 
                     b.Property<string>("Value");
 
@@ -474,13 +486,13 @@ namespace AirConditioner.Data.Migrations
 
             modelBuilder.Entity("AirConditioner.Core.Models.Factor", b =>
                 {
-                    b.HasOne("AirConditioner.Core.Models.AirConditionerName", "AirConditionerName")
+                    b.HasOne("AirConditioner.Core.Models.AirConditionerModel", "AirConditionerModel")
                         .WithMany("Factors")
-                        .HasForeignKey("AirConditionerNameId")
+                        .HasForeignKey("AirConditionerModelId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("AirConditioner.Core.Models.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("Factors")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade);
 
@@ -510,31 +522,46 @@ namespace AirConditioner.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("AirConditioner.Core.Models.FactorPiecePrice", b =>
+            modelBuilder.Entity("AirConditioner.Core.Models.FactorPiece", b =>
                 {
                     b.HasOne("AirConditioner.Core.Models.Factor", "Factor")
                         .WithMany("FactorPiecePrices")
                         .HasForeignKey("FactorId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("AirConditioner.Core.Models.PiecePrice", "PiecePrice")
-                        .WithMany()
-                        .HasForeignKey("PiecePriceId")
+                    b.HasOne("AirConditioner.Core.Models.Piece", "Piece")
+                        .WithMany("FactorPieces")
+                        .HasForeignKey("PieceId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("AirConditioner.Core.Models.FactorWork", b =>
+                {
+                    b.HasOne("AirConditioner.Core.Models.Factor", "Factor")
+                        .WithMany("FactorWorks")
+                        .HasForeignKey("FactorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("AirConditioner.Core.Models.Work", "Work")
+                        .WithMany("FactorWorks")
+                        .HasForeignKey("WorkId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("AirConditioner.Core.Models.PiecePercent", b =>
                 {
-                    b.HasOne("AirConditioner.Core.Models.Piece")
+                    b.HasOne("AirConditioner.Core.Models.Piece", "Piece")
                         .WithMany("PiecePercents")
-                        .HasForeignKey("PieceId");
+                        .HasForeignKey("PieceId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("AirConditioner.Core.Models.PiecePrice", b =>
                 {
-                    b.HasOne("AirConditioner.Core.Models.Piece")
+                    b.HasOne("AirConditioner.Core.Models.Piece", "Piece")
                         .WithMany("PiecePrices")
-                        .HasForeignKey("PieceId");
+                        .HasForeignKey("PieceId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
