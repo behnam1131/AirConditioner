@@ -7,10 +7,11 @@ namespace AirConditioner.Data
     public class ApplicationDbContext : IdentityDbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseNpgsql("Host=ec2-54-197-239-115.compute-1.amazonaws.com" +
-                "Database=dfa7g11820kube" +
-                "User=staqclgjerrwcu" +
-                "Password=ca959d87135967a053502d78199e58fcbde01e3d7d9fda0644f774c3e64c1de4");
+            => optionsBuilder.UseNpgsql("Host=raja.db.elephantsql.com;Database=mnoyzxti;Username=mnoyzxti;Password=zMykjICPmmoO7zIpOIs-YIZbqDCHOvV-");
+            //=> optionsBuilder.UseNpgsql("Host=ec2-54-197-239-115.compute-1.amazonaws.com" +
+            //    "Database=dfa7g11820kube" +
+            //    "User=staqclgjerrwcu" +
+            //    "Password=ca959d87135967a053502d78199e58fcbde01e3d7d9fda0644f774c3e64c1de4");
 
 
         public DbSet<AirConditionerModel> AirConditionerModels { get; set; }       
