@@ -51,6 +51,6 @@
   </ItemGroup>
 
   <Target Name="PrePublishTarget" AfterTargets="Publish" >
-    <Exec Command="dotnet ef database update --project AirConditioner.Data" />
+    <Exec Command="dotnet ef database update --project=AirConditioner.Data --msbuildprojectextensionspath" />
   </Target>
 </Project>
