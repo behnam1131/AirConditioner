@@ -8,7 +8,8 @@ namespace AirConditioner.Web
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().MigrateDatabase<ApplicationDbContext>().Run();
+            CreateWebHostBuilder(args).Build().Run();
+            //CreateWebHostBuilder(args).Build().MigrateDatabase<ApplicationDbContext>().Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
