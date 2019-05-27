@@ -8,10 +8,9 @@ namespace AirConditioner.Data
     {
         public ApplicationDbContext()
         {
-            using (var context = new ApplicationDbContext)
-            {
-                context.Database.Migrate();
-            }
+           
+                this.Database.Migrate();
+            
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
