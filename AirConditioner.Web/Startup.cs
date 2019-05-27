@@ -42,10 +42,8 @@ namespace AirConditioner.Web
             services.AddApplicationServices();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env,ApplicationDbContext context)
-        {            
-            context.Database.Migrate();            
-
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {     
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

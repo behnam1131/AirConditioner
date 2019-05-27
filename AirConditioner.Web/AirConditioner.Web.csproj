@@ -49,8 +49,4 @@
   <ItemGroup>
     <Folder Include="wwwroot\lib\assets\plugins\jquery-file-upload\server\php\files\thumbnail\" />
   </ItemGroup>
-
-  <!--<Target Name="PrePublishTarget" AfterTargets="Publish" >
-    <Exec Command="dotnet ef database update" />
-  </Target>-->
 </Project>

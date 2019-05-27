@@ -6,13 +6,6 @@ namespace AirConditioner.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        public ApplicationDbContext()
-        {
-           
-                this.Database.Migrate();
-            
-        }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             => optionsBuilder.UseNpgsql("Host=ec2-54-197-239-115.compute-1.amazonaws.com" +
                 "Database=dfa7g11820kube" +
