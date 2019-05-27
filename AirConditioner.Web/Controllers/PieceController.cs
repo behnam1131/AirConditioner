@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AirConditioner.Web.Controllers
 {
-    public class PieceController : Controller
+    public class PieceController : BaseController
     {
         private readonly IPieceService _pieceService;
         //private readonly ITimeManager _timeManager;

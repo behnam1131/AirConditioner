@@ -32,7 +32,7 @@ namespace AirConditioner.Web.Controllers
         public IActionResult Add(UserAssistantDto userAssistantDto)
         {
 
-            var f=_userAssistantService.Add(userAssistantDto);
+            var flag=_userAssistantService.Add(userAssistantDto);
 
             return RedirectToAction("Index");
         }

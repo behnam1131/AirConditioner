@@ -4,7 +4,7 @@ using AirConditioner.Web.ViewModels;
 
 namespace AirConditioner.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public IActionResult Index()
         {
