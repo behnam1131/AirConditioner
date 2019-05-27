@@ -151,10 +151,8 @@ namespace AirConditioner.Application.Service
             {
                 ChangeDateTime = factorDto.ChangeDateTime,
                 DateFa = factorDto.DateFa,
-                Time = factorDto.Time,
-                Code = factorDto.Code,
+                Time = factorDto.Time,              
                 Comment = factorDto.Comment,
-
                 CustomerId = factorDto.CustomerId,                
                 EngineVolumeId = factorDto.EngineVolumeId,               
                 UserAssistantId = factorDto.UserAssistantId,                
@@ -187,6 +185,12 @@ namespace AirConditioner.Application.Service
             {
                 return false;
             }
+        }
+
+
+        public int GetLastId(FactorDto factorDto)
+        {
+            
         }
     }
 }

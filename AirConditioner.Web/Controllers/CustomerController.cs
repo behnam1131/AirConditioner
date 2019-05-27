@@ -8,18 +8,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AirConditioner.Web.Controllers
 {
-    public class AirConditionerModelController : BaseController
+    public class CustomerController : BaseController
     {
-        private readonly IAirConditionerModelService _airConditionerModelService;
-        public AirConditionerModelController(IAirConditionerModelService airConditionerModelService)
+        private readonly ICustomerService _customerService;
+        public CustomerController(ICustomerService customerService)
         {
-            _airConditionerModelService = airConditionerModelService;
+            _customerService = customerService;
 
         }
 
         public IActionResult Index()
         {
-            var list = _airConditionerModelService.GetAll();
+            var list = _customerService.GetAll();
             return View(list);
         }
 
@@ -29,10 +29,10 @@ namespace AirConditioner.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(AirConditionerModelDto airConditionerModelDto)
+        public IActionResult Add(CustomerDto customerDto)
         {
 
-            var flag = _airConditionerModelService.Add(airConditionerModelDto);
+            var flag = _customerService.Add(customerDto);
 
             return RedirectToAction("Index");
         }

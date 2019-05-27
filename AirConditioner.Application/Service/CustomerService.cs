@@ -24,7 +24,7 @@ namespace AirConditioner.Application.Service
             {
                 Id = e.Id,
                 Name = e.Name,
-                address=e.address,
+                Address=e.Address,
                 Phone=e.Phone
             }).ToList();
 
@@ -36,7 +36,7 @@ namespace AirConditioner.Application.Service
             Customer customer = new Customer
             {
                 Name = customerDto.Name,
-                address = customerDto.address,
+                Address = customerDto.Address,
                 Phone = customerDto.Phone
             };
             try
