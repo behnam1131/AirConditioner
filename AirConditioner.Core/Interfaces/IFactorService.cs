@@ -9,6 +9,6 @@ namespace AirConditioner.Core.Interfaces
     {
         FactorDto Add(FactorDto factorDto);
         List<FactorDto> GetAll();
-        FactorDto GetById(int factorId);
+        FactorDto GetById(int factorId);        
     }
 }

@@ -74,16 +74,26 @@ namespace AirConditioner.Web.Controllers
         [HttpPost]
         public IActionResult Add(FactorDto factorDto)
         {
-            TempData["factorNew"] = _factorService.Add(factorDto);
-           
+            var factor = _factorService.Add(factorDto);
+
+
+            var s = Newtonsoft.Json.JsonConvert.SerializeObject(factor);
+            TempData["factorNew"] = s;
+            
+
             return RedirectToAction("DisplayFactorCode");
         }
 
         public IActionResult DisplayFactorCode()
         {
-            FactorDto factorDto = (FactorDto)TempData["factorNew"];
 
-            return View(factorDto);
+            if (TempData["factorNew"] is string s)
+            {
+                var newUser = Newtonsoft.Json.JsonConvert.DeserializeObject<FactorDto>(s);
+                return View(newUser);
+            }
+           
+            return RedirectToAction("Index");
         }
 
 

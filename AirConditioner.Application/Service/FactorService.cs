@@ -178,8 +178,7 @@ namespace AirConditioner.Application.Service
                                    e.FactorId = factor.Id;
                                });
                     _factorPieceService.Add(factorDto.FactorPieceDtos);
-                }
-               
+                }               
 
                 if(factorDto.FactorWorkDtos != null)
                 {
@@ -189,11 +188,8 @@ namespace AirConditioner.Application.Service
                                    });
                     _factorWorkService.Add(factorDto.FactorWorkDtos);
                 }
-               
-                
 
                 return GetById(factor.Id);
-
             }
             catch (Exception ex)
             {
@@ -208,5 +204,16 @@ namespace AirConditioner.Application.Service
 
             return factorId == 0 ? 10000: (10000+factorId);
         }
+
+
+        public void DeleteAll()
+        {
+            _dbContext.Factors.ToList().ForEach(e =>
+            {
+                _dbContext.Remove(e);
+            });
+            _dbContext.SaveChanges();
+        }
+
     }
 }

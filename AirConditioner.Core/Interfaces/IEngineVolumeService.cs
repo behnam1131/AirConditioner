@@ -9,5 +9,7 @@ namespace AirConditioner.Core.Interfaces
     {
         bool Add(EngineVolumeDto engineVolumeDto);
         List<EngineVolumeDto> GetAll();
+        EngineVolumeDto GetById(int id);
+        bool Edit(EngineVolumeDto engineVolumeDto);
     }
 }

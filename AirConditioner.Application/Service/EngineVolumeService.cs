@@ -48,5 +48,39 @@ namespace AirConditioner.Application.Service
                 return false;
             }
         }
+
+        public bool Edit(EngineVolumeDto engineVolumeDto)
+        {
+            var EngineVolume = _dbContext.EngineVolumes
+                .Where(e => e.Id == engineVolumeDto.Id).FirstOrDefault();
+
+            EngineVolume.Name = engineVolumeDto.Name;
+
+
+            try
+            {               
+                _dbContext.SaveChanges();
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public EngineVolumeDto GetById(int id)
+        {
+            var EngineVolume = _dbContext.EngineVolumes
+                .Where(e => e.Id == id).FirstOrDefault();
+
+            EngineVolumeDto engineVolumeDto = new EngineVolumeDto()
+            {
+                Id= EngineVolume.Id,
+                Name= EngineVolume.Name,
+            };
+
+            return engineVolumeDto;
+        }
     }
 }

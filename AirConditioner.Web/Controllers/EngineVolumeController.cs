@@ -36,5 +36,26 @@ namespace AirConditioner.Web.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public IActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index"); 
+            }
+            var engineVolume = _engineVolumeService.GetById((int)id);
+            if (engineVolume == null)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(engineVolume);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(EngineVolumeDto engineVolumeDto)
+        {
+            var engineVolume = _engineVolumeService.Edit(engineVolumeDto);
+            return RedirectToAction("Index");
+        }
     }
 }
