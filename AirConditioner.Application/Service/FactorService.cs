@@ -145,7 +145,7 @@ namespace AirConditioner.Application.Service
             return factor;
         }
 
-        public bool Add(FactorDto factorDto)
+        public FactorDto Add(FactorDto factorDto)
         {
             Factor  factor = new Factor
             {
@@ -166,31 +166,47 @@ namespace AirConditioner.Application.Service
                 _dbContext.Factors.Add(factor);
                 _dbContext.SaveChanges();
 
-                factorDto.FactorPieceDtos.ForEach(e =>
-                {
-                    e.FactorId = factor.Id;
-                });
-                factorDto.FactorWorkDtos.ForEach(e =>
-                {
-                    e.FactorId = factor.Id;
-                });
+                var factorEntity = _dbContext.Factors.Find(factor.Id);
+                factorEntity.Code = GetCode(factor);
 
-                _factorPieceService.Add(factorDto.FactorPieceDtos);
-                _factorWorkService.Add(factorDto.FactorWorkDtos);
+                _dbContext.SaveChanges();
+
+                if (factorDto.FactorPieceDtos != null)
+                {
+                    factorDto.FactorPieceDtos.ForEach(e =>
+                               {
+                                   e.FactorId = factor.Id;
+                               });
+                    _factorPieceService.Add(factorDto.FactorPieceDtos);
+                }
                
-                return true;
+
+                if(factorDto.FactorWorkDtos != null)
+                {
+                    factorDto.FactorWorkDtos.ForEach(e =>
+                                   {
+                                       e.FactorId = factor.Id;
+                                   });
+                    _factorWorkService.Add(factorDto.FactorWorkDtos);
+                }
+               
+                
+
+                return GetById(factor.Id);
 
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
         }
 
 
-        public int GetLastId(FactorDto factorDto)
+        public int GetCode(Factor factor)
         {
-            
+            int factorId= _dbContext.Factors.Find(factor.Id).Id;
+
+            return factorId == 0 ? 10000: (10000+factorId);
         }
     }
 }

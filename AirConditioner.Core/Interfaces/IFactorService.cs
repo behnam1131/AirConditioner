@@ -7,7 +7,7 @@ namespace AirConditioner.Core.Interfaces
 {
     public interface IFactorService
     {
-        bool Add(FactorDto factorDto);
+        FactorDto Add(FactorDto factorDto);
         List<FactorDto> GetAll();
         FactorDto GetById(int factorId);
     }

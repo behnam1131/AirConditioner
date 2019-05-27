@@ -74,16 +74,14 @@ namespace AirConditioner.Web.Controllers
         [HttpPost]
         public IActionResult Add(FactorDto factorDto)
         {
-
-
-            _factorService.Add(factorDto);
-
-
-            return RedirectToAction("DisplayFactorCode", new { factorDto = factorDto });
+            TempData["factorNew"] = _factorService.Add(factorDto);
+           
+            return RedirectToAction("DisplayFactorCode");
         }
 
-        public IActionResult DisplayFactorCode(FactorDto factorDto)
+        public IActionResult DisplayFactorCode()
         {
+            FactorDto factorDto = (FactorDto)TempData["factorNew"];
 
             return View(factorDto);
         }
