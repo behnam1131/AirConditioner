@@ -15,6 +15,9 @@ namespace AirConditioner.Core.Dtos
         [DisplayName("قیمت")]
         public double Price { get; set; }
 
+        [DisplayName(" قیمت برای مشتری")]
+        public double PriceTotal { get { return (Price + (Price * Percent/100)); } }
+
         [DisplayName("درصد نسبت به قیمت")]
         public int Percent { get; set; }
     }

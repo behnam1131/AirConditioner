@@ -414,7 +414,7 @@
             var pieceId = $("#piece").val();
 
             var pieceCount = $("#pieceCount").val();
-            var price = pieceList.find(piece => piece.id == pieceId).price;
+            var price = pieceList.find(piece => piece.id == pieceId).priceTotal;
 
             $("#price").empty();
             $("#totalPrice").empty();
@@ -493,7 +493,7 @@
             $("#tablePiece tbody").append('<tr val=' + piece.id + '><td>' +
                 (rowCount + 1) + '</td><td> ' +
                 piece.name + "</td ><td class='price'>" +
-                piece.price + "</td><td class='count'>" +
+                piece.priceTotal + "</td><td class='count'>" +
                 pieceCount + "</td><td class='priceTotal'>" +
                 (pieceCount * piece.price) + "</td><td><span class='removePiece'>حدف</span></td></tr>");
 
