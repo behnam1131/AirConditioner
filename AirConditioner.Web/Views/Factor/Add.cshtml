@@ -5,8 +5,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section Styles
+    {
+
+    @*<link href="~/lib/datetimepicker/Content/bootstrap-theme.css" rel="stylesheet" />*@
+    <link href="~/lib/datetimepicker/Content/MdBootstrapPersianDateTimePicker/jquery.Bootstrap-PersianDateTimePicker.css" rel="stylesheet" />
+}
+
+
 <h4>ثبت فاکتور</h4>
 <hr />
+
 <div class="row">
     <div class="col-md-12">
         <form asp-action="Add">
@@ -38,12 +47,12 @@
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <label asp-for="EngineVolumeId" class="control-label"></label>
-                                            </div> 
+                                            </div>
                                             <div class="col-md-8">
                                                 @Html.DropDownList("EngineVolumeId", ViewBag.EngineVolumeList as SelectList, new { @class = "form-control" })
                                                 <span asp-validation-for="EngineVolumeId" class="text-danger"></span>
                                             </div>
-                                        </div>                                      
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -55,93 +64,93 @@
                 <div class="col-md-6">
                     <div class="panel panel-warning">
                         <div class="panel-heading">اطلاعات کارفرما و کارپذیر</div>
-                        <div class="panel-body">                            
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="row">
-                                            
-                                            <div class="col-md-4">
-                                                <label asp-for="CustomerId" class="control-label"></label>
-                                            </div>
-                                            <div class="col-md-8">
-                                                @Html.DropDownList("CustomerId", ViewBag.CustomerList as SelectList, new { @class = "form-control" })
-                                            
-                                                <span asp-validation-for="CustomerId" class="text-danger"></span>
-                                            </div>
+                        <div class="panel-body">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="row">
+
+                                        <div class="col-md-4">
+                                            <label asp-for="CustomerId" class="control-label"></label>
                                         </div>
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("CustomerId", ViewBag.CustomerList as SelectList, new { @class = "form-control" })
 
-                                        @*<input asp-for="CustomerId" class="form-control" />*@
-
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label asp-for="UserExpertId" class="control-label"></label>
-
-                                            </div>
-                                            <div class="col-md-8">
-                                                @Html.DropDownList("UserExpertId", ViewBag.UserExpertList as SelectList, new { @class = "form-control" })
-
-                                                <span asp-validation-for="UserExpertId" class="text-danger"></span>
-                                            </div>
+                                            <span asp-validation-for="CustomerId" class="text-danger"></span>
                                         </div>
                                     </div>
-                                </div>
 
+                                    @*<input asp-for="CustomerId" class="form-control" />*@
+
+                                </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label asp-for="UserOperatorId" class="control-label"></label>
-                                            </div>
-                                            <div class="col-md-8">
-                                                @Html.DropDownList("UserOperatorId", ViewBag.UserOperatorList as SelectList, new { @class = "form-control" })
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label asp-for="UserExpertId" class="control-label"></label>
 
-                                                <span asp-validation-for="UserOperatorId" class="text-danger"></span>
-                                            </div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("UserExpertId", ViewBag.UserExpertList as SelectList, new { @class = "form-control" })
+
+                                            <span asp-validation-for="UserExpertId" class="text-danger"></span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label asp-for="UserTechnicianId" class="control-label"></label>
-                                            </div>
-                                            <div class="col-md-8">
-                                                @Html.DropDownList("UserTechnicianId", ViewBag.UserTechnicianList as SelectList, new { @class = "form-control" })
-
-                                                <span asp-validation-for="UserTechnicianId" class="text-danger"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label asp-for="UserAssistantId" class="control-label"></label>
-                                            </div>
-                                            <div class="col-md-8">
-                                                @Html.DropDownList("UserAssistantId", ViewBag.UserAssistantList as SelectList, new { @class = "form-control" })
-
-                                                <span asp-validation-for="UserAssistantId" class="text-danger"></span>
-                                            </div>                                            
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
 
                         </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label asp-for="UserOperatorId" class="control-label"></label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("UserOperatorId", ViewBag.UserOperatorList as SelectList, new { @class = "form-control" })
+
+                                            <span asp-validation-for="UserOperatorId" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label asp-for="UserTechnicianId" class="control-label"></label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("UserTechnicianId", ViewBag.UserTechnicianList as SelectList, new { @class = "form-control" })
+
+                                            <span asp-validation-for="UserTechnicianId" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label asp-for="UserAssistantId" class="control-label"></label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            @Html.DropDownList("UserAssistantId", ViewBag.UserAssistantList as SelectList, new { @class = "form-control" })
+
+                                            <span asp-validation-for="UserAssistantId" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
                 </div>
+            </div>
 
-          
+
             <div class="panel panel-success">
                 <div class="panel-heading">سایر اطلاعات</div>
                 <div class="panel-body">
@@ -153,7 +162,10 @@
                                         <label asp-for="DateFa" class="control-label"></label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input asp-for="DateFa" class="form-control" />
+                                        @*<input asp-for="DateFa" class="form-control" />*@
+
+                                        <input asp-for="DateFa" id="textbox1" type="text" class="form-control" data-mddatetimepicker="true" value="۱۳۹۲/۰۱/۰۱" data-placement="right" />
+
                                         <span asp-validation-for="DateFa" class="text-danger"></span>
                                     </div>
                                 </div>
@@ -196,27 +208,27 @@
                     <div class="row">
                         <div class="col-md-2">
                             <div class="row" style="margin-bottom:6px">
-                               
-                                        <div class="col-md-4">
-                                            <label class="control-label">قطعه</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <select id="piece" style="width:113px" class="form-control"></select>
-                                        </div>
+
+                                <div class="col-md-4">
+                                    <label class="control-label">قطعه</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <select id="piece" style="width:113px" class="form-control"></select>
+                                </div>
 
                             </div>
                             <div class="row" style="margin-bottom:6px">
-                               
-                                        <div class="col-md-4">
-                                            <label class="control-label">تعداد</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <input type="text" id="pieceCount" style="width:113px" class="form-control" />
-                                        </div>
+
+                                <div class="col-md-4">
+                                    <label class="control-label">تعداد</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="text" id="pieceCount" style="width:113px" class="form-control" />
+                                </div>
 
                             </div>
                             <div class="row" style="margin-bottom:6px">
-                                <div class="form-group"  style="text-align:center">
+                                <div class="form-group" style="text-align:center">
                                     <input type="button" Id="savePiece" style="width:100%;" class="btn btn-success" value="ثبت" />
                                 </div>
                             </div>
@@ -296,7 +308,7 @@
                                 <div class="col-md-7">
                                     <textarea id="commentWork" rows="4" class="form-control"></textarea>
                                 </div>
-                                
+
                             </div>
                             <div class="row" style="text-align:center">
                                 <input type="button" Id="saveWork" class="btn btn-success" style="width: 65%;display: list-item;" value="ثبت" />
@@ -310,7 +322,7 @@
                                         <th>کارهای انجام شده</th>
                                         <th>قیمت</th>
                                         <th>توضیحات</th>
-                                        <th>امکانات</th>  
+                                        <th>امکانات</th>
                                     </tr>
                                 </thead>
                                 <tbody></tbody>
@@ -320,13 +332,13 @@
 
                             <div hidden id="FactorPiece"></div>
                             <div hidden id="FactorWork"></div>
-                        </div>                     
+                        </div>
 
-                        
+
                     </div>
                 </div>
             </div>
-            <div class="form-group"  style="text-align:center">
+            <div class="form-group" style="text-align:center">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
@@ -338,7 +350,30 @@
 </div>
 
 @section Scripts
-{
+    {
+
+    <script type="text/javascript">
+        $('#input1').change(function () {
+            alert(150009);
+            var $this = $(this),
+                value = $this.val();
+            alert(value);
+        });
+        $('#textbox1').change(function () {
+            alert(159);
+            var $this = $(this),
+                value = $this.val();
+            alert(value);
+        });
+    </script>
+
+
+
+    <script src="~/lib/datetimepicker/Scripts/MdBootstrapPersianDateTimePicker/calendar.min.js"></script>
+    <script src="~/lib/datetimepicker/Scripts/MdBootstrapPersianDateTimePicker/jquery.Bootstrap-PersianDateTimePicker.min.js"></script>
+
+
+
     <script>
 
         var pieceList;
@@ -366,28 +401,27 @@
             }).done(function (dates) {
                 workList = dates;
                 $("#work").append('<option value="">انتخاب ...</option>');
-                
+
                 $.each(dates, function (index, item) {
                     $("#work").append('<option value="' + item.id + '">' + item.name + '</option>');
                 });
             });
 
         }
-       
 
-        var pieceOnChange = function ()
-        {
+
+        var pieceOnChange = function () {
             var pieceId = $("#piece").val();
-           
+
             var pieceCount = $("#pieceCount").val();
-            var price=pieceList.find(piece => piece.id == pieceId).price;
+            var price = pieceList.find(piece => piece.id == pieceId).price;
 
             $("#price").empty();
             $("#totalPrice").empty();
 
             $("#price").append('<span>' + price + '</span>');
             $("#totalPrice").append('<span>' + pieceCount * price + '</span>');
-            
+
         }
 
 
@@ -403,7 +437,7 @@
             $("#tableWork tbody").append('<tr val=' + work.id + '><td>' +
                 (rowCount + 1) + '</td><td> ' +
                 work.name + "</td ><td class='priceWork'>" +
-                priceWork + "</td><td class='commentWork'>" +                
+                priceWork + "</td><td class='commentWork'>" +
                 commentWork + "</td><td><span class='removeWork'>حدف</span></td></tr>");
 
 
@@ -427,11 +461,11 @@
                 sumPrice + '</td><td></td><td></td ></tr>');
 
 
-          
+
             $("#FactorWork").empty();
 
             $("#tableWork tbody tr").each(function (index, item) {
-                var workId = $(item).attr('val');                
+                var workId = $(item).attr('val');
                 var workComment = $(item).find(".commentWork").text();
                 var workPrice = $(item).find(".priceWork").text();
                 var i = (index + 1);
@@ -484,7 +518,7 @@
                 sunPrice + '</td></tr>');
 
 
-            
+
             $("#FactorPiece").empty();
 
             $("#tablePiece tbody tr").each(function (index, item) {
@@ -501,7 +535,7 @@
                     $("#FactorPiece").append("<input name='FactorPieceDtos[" + index + "].PriceOne' value='" + priceOne + "' />");
                     $("#FactorPiece").append("<input name='FactorPieceDtos[" + index + "].Value' value='" + pieceCount + "' />");
                 }
-            });  
+            });
         }
 
 
@@ -526,15 +560,15 @@
 
             $("#piece").on("change", pieceOnChange);
             $("#pieceCount").on("keyup", pieceOnChange);
-            $("#savePiece").on("click", addPieceToTable); 
-            $("#saveWork").on("click", addWorkToTable); 
-            $("#tablePiece").on("click", '.removePiece', removePieceFromTable); 
-            $("#tableWork").on("click", '.removeWork', removeWorkFromTable); 
+            $("#savePiece").on("click", addPieceToTable);
+            $("#saveWork").on("click", addWorkToTable);
+            $("#tablePiece").on("click", '.removePiece', removePieceFromTable);
+            $("#tableWork").on("click", '.removeWork', removeWorkFromTable);
 
 
             performLoad();
         }
-        
+
         init();
 
     </script>
