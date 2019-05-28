@@ -21,6 +21,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Percent)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PriceTotal)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -37,9 +40,12 @@
                 @Html.DisplayFor(modelItem => item.Percent)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.PriceTotal)
+            </td>
+            <td>
                 @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
             </td>
         </tr>
 }
