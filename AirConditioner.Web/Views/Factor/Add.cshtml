@@ -7,14 +7,14 @@
 
 @section Styles
     {
+    <link href="~/lib/bootstrap-jalali-datepicker-master/bootstrap-datepicker.css" rel="stylesheet" />
 
-    @*<link href="~/lib/datetimepicker/Content/bootstrap-theme.css" rel="stylesheet" />*@
-    <link href="~/lib/datetimepicker/Content/MdBootstrapPersianDateTimePicker/jquery.Bootstrap-PersianDateTimePicker.css" rel="stylesheet" />
 }
 
 
 <h4>ثبت فاکتور</h4>
 <hr />
+
 
 <div class="row">
     <div class="col-md-12">
@@ -164,7 +164,7 @@
                                     <div class="col-md-8">
                                         @*<input asp-for="DateFa" class="form-control" />*@
 
-                                        <input asp-for="DateFa" id="textbox1" type="text" class="form-control" data-mddatetimepicker="true" value="۱۳۹۲/۰۱/۰۱" data-placement="right" />
+                                        <input asp-for="DateFa" id="datepicker0" type="text" class="form-control" data-mddatetimepicker="true" value="۱۳۹۲/۰۱/۰۱" />
 
                                         <span asp-validation-for="DateFa" class="text-danger"></span>
                                     </div>
@@ -346,33 +346,28 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">بازگشت</a>
 </div>
 
 @section Scripts
     {
 
     <script type="text/javascript">
-        $('#input1').change(function () {
-            alert(150009);
-            var $this = $(this),
-                value = $this.val();
-            alert(value);
-        });
-        $('#textbox1').change(function () {
-            alert(159);
-            var $this = $(this),
-                value = $this.val();
-            alert(value);
+
+        $(document).ready(function () {            
+            $("#datepicker0").datepicker({
+                isRTL: true,
+                dateFormat: "yy/mm/dd",
+                changeMonth: true,
+                changeYear: true,
+                showAnim: 'slideDown'
+            });
         });
     </script>
 
 
-
-    <script src="~/lib/datetimepicker/Scripts/MdBootstrapPersianDateTimePicker/calendar.min.js"></script>
-    <script src="~/lib/datetimepicker/Scripts/MdBootstrapPersianDateTimePicker/jquery.Bootstrap-PersianDateTimePicker.min.js"></script>
-
-
+    <script src="~/lib/bootstrap-jalali-datepicker-master/bootstrap-datepicker.js"></script>
+    <script src="~/lib/bootstrap-jalali-datepicker-master/bootstrap-datepicker.fa.js"></script>
 
     <script>
 
