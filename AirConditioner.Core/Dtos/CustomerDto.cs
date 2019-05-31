@@ -10,6 +10,10 @@ namespace AirConditioner.Core.Dtos
         public int Id { get; set; }
         [DisplayName("نام و نام خانوادگی")]
         public string Name { get; set; }
+
+        [DisplayName("کد مشتری")]
+        public string Code { get; set; }
+
         [DisplayName("موبایل")]
         public string Phone { get; set; }
         [DisplayName("آدرس")]

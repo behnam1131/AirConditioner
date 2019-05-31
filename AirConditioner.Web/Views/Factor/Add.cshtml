@@ -8,12 +8,23 @@
 @section Styles
     {
     <link href="~/lib/bootstrap-jalali-datepicker-master/bootstrap-datepicker.css" rel="stylesheet" />
-
+    <link href="~/lib/bootstrap-datetimepicker-0.0.11/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 }
 
 
 <h4>ثبت فاکتور</h4>
 <hr />
+
+
+@*<div class="well">
+    <div id="datetimepicker3" class="input-append">
+        <input data-format="hh:mm:ss" type="text"/>
+        <span class="add-on">
+            <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+            </i>
+        </span>
+    </div>
+</div>*@
 
 
 <div class="row">
@@ -164,7 +175,7 @@
                                     <div class="col-md-8">
                                         @*<input asp-for="DateFa" class="form-control" />*@
 
-                                        <input asp-for="DateFa" id="datepicker0" type="text" class="form-control" data-mddatetimepicker="true" value="۱۳۹۲/۰۱/۰۱" />
+                                        <input asp-for="DateFa" id="datepicker0" type="text" class="form-control" data-mddatetimepicker="true" />
 
                                         <span asp-validation-for="DateFa" class="text-danger"></span>
                                     </div>
@@ -177,7 +188,13 @@
                                         <label asp-for="Time" class="control-label"></label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input asp-for="Time" class="form-control" />
+                                        <div id="datetimepicker3" class="input-append form-control">
+                                            <input asp-for="Time"  data-format="hh:mm:ss" type="text" />
+                                            <span class="add-on">
+                                                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+                                                </i>
+                                            </span>
+                                        </div>                                       
                                         <span asp-validation-for="Time" class="text-danger"></span>
                                     </div>
                                 </div>
@@ -354,7 +371,7 @@
 
     <script type="text/javascript">
 
-        $(document).ready(function () {            
+        $(document).ready(function () {
             $("#datepicker0").datepicker({
                 isRTL: true,
                 dateFormat: "yy/mm/dd",
@@ -365,7 +382,15 @@
         });
     </script>
 
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker3').datetimepicker({
+                pickDate: false
+            });
+        });
+    </script>
 
+    <script src="~/lib/bootstrap-datetimepicker-0.0.11/js/bootstrap-datetimepicker.min.js"></script>
     <script src="~/lib/bootstrap-jalali-datepicker-master/bootstrap-datepicker.js"></script>
     <script src="~/lib/bootstrap-jalali-datepicker-master/bootstrap-datepicker.fa.js"></script>
 

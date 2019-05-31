@@ -43,6 +43,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AirConditioner.Application.DependencyInjection\AirConditioner.Application.DependencyInjection.csproj" />
     <ProjectReference Include="..\AirConditioner.Data\AirConditioner.Data.csproj" />
+    <ProjectReference Include="..\AirConditioner.Helper\AirConditioner.Helper.csproj" />
   </ItemGroup>
 
 

@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\AirConditioner.Core\AirConditioner.Core.csproj" />
     <ProjectReference Include="..\AirConditioner.Data\AirConditioner.Data.csproj" />
+    <ProjectReference Include="..\AirConditioner.Helper\AirConditioner.Helper.csproj" />
   </ItemGroup>
 
 </Project>

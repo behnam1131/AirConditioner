@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AirConditioner.Core.Dtos;
 using AirConditioner.Core.Interfaces;
+using AirConditioner.Helper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AirConditioner.Web.Controllers
@@ -19,7 +20,11 @@ namespace AirConditioner.Web.Controllers
 
         public IActionResult Index()
         {
+            //PagedResult<CustomerDto> list = _customerService.GetQuery().GetPaged(1,2);
+
             var list = _customerService.GetAll();
+
+
             return View(list);
         }
 
@@ -31,7 +36,6 @@ namespace AirConditioner.Web.Controllers
         [HttpPost]
         public IActionResult Add(CustomerDto customerDto)
         {
-
             var flag = _customerService.Add(customerDto);
 
             return RedirectToAction("Index");

@@ -2,6 +2,7 @@
 using AirConditioner.Core.Interfaces;
 using AirConditioner.Core.Models;
 using AirConditioner.Data;
+using AirConditioner.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,13 @@ namespace AirConditioner.Application.Service
 
         public List<CustomerDto> GetAll()
         {
+            
+
             var list = _dbContext.Customers.Select(e => new CustomerDto
             {
                 Id = e.Id,
                 Name = e.Name,
+                Code=e.Code,
                 Address=e.Address,
                 Phone=e.Phone
             }).ToList();
@@ -31,12 +35,29 @@ namespace AirConditioner.Application.Service
             return list;
         }
 
+        public IQueryable<CustomerDto> GetQuery()
+        {
+            var list = _dbContext.Customers.AsQueryable().Select(e => new CustomerDto
+            {
+                Id = e.Id,
+                Name = e.Name,
+                Code = e.Code,
+                Address = e.Address,
+                Phone = e.Phone
+            }); 
+
+            return list;
+        }
+
+
         public bool Add(CustomerDto customerDto)
         {
             Customer customer = new Customer
             {
                 Name = customerDto.Name,
+                Code=customerDto.Code,
                 Address = customerDto.Address,
+                
                 Phone = customerDto.Phone
             };
             try

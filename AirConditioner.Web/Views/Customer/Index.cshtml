@@ -1,5 +1,5 @@
-﻿@model IEnumerable<AirConditioner.Core.Dtos.CustomerDto>
-
+﻿
+@model IEnumerable<AirConditioner.Core.Dtos.CustomerDto>
 @{
     ViewData["Title"] = "Index";
 }
@@ -9,11 +9,23 @@
 <p>
     <a asp-action="Add">افزودن</a>
 </p>
-<table class="table">
+
+<div class="row">
+    <div class="col-md-2">
+        <input type="text" id="textSearch" class="form-control" />
+    </div>
+    <div class="col-md-2">
+        <input type="button" id="btnSearch" value="جستجو" class="btn btn-primary" />
+    </div>
+</div>
+<table class="table" id="tableCustomer">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Phone)
@@ -25,23 +37,54 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+
+@section Scripts
+{
+    <script>
+
+
+        var searchTable = function () {
+            var textSearch = $("#textSearch").val();
+
+            $("#tableCustomer tbody tr").each(function (index, item) {
+                $(item).hide();
+                $(item.children).each(function (index1, item1) {
+                    if (~item1.innerHTML.indexOf(textSearch))
+                        $(item).show()
+                });
+            });
+        }
+
+
+        var init = function () {           
+            $("#btnSearch").on("click", searchTable);
+        }
+
+        init();
+
+    </script>
+}
