@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using AirConditioner.Core.Dtos;
 using AirConditioner.Core.Interfaces;
-using AirConditioner.Helper;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AirConditioner.Web.Controllers
