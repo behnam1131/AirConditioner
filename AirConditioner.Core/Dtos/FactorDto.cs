@@ -18,7 +18,8 @@ namespace AirConditioner.Core.Dtos
 
         [DisplayName("زمان")]
         public string Time { get; set; }
-        public DateTime ChangeDateTime { get; set; }
+        public DateTime FactroDateTime { get; set; }
+        public DateTime RegisterDateTime { get; set; }
         [DisplayName("توضیحات")]
         [DataType(DataType.MultilineText)]
         public string Comment { get; set; }

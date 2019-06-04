@@ -230,7 +230,7 @@
                                     <label class="control-label">قطعه</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <select id="piece" style="width:113px" class="form-control"></select>
+                                    <select id="pieceCombo" style="width:113px" class="form-control"></select>
                                 </div>
 
                             </div>
@@ -254,7 +254,7 @@
                         <div class="col-md-1">
                             <div class="form-group">
                                 <label class="control-label">قیمت</label>
-                                <label id="price"></label>
+                                <input type="text" id="price" style="width: 100%;"/>
 
                             </div>
                             <hr />
@@ -406,10 +406,10 @@
                 dataType: "json",
             }).done(function (dates) {
                 pieceList = dates;
-                $("#piece").append('<option value="">انتخاب ...</option>');
+                $("#pieceCombo").append('<option value="">انتخاب ...</option>');
                 console.log(dates)
                 $.each(dates, function (index, item) {
-                    $("#piece").append('<option value="' + item.id + '">' + item.name + '</option>');
+                    $("#pieceCombo").append('<option value="' + item.id + '">' + item.name + '</option>');
                 });
             });
 
@@ -431,20 +431,30 @@
 
 
         var pieceOnChange = function () {
-            var pieceId = $("#piece").val();
+            var pieceId = $("#pieceCombo").val();            
+            var price = pieceList.find(piece => piece.id == pieceId).priceTotal;           
 
-            var pieceCount = $("#pieceCount").val();
-            var price = pieceList.find(piece => piece.id == pieceId).priceTotal;
+            $("#price:text").val(price);
+            
+            piecePriceAndCountChange();
+        }
+        var piecePriceAndCountChange = function () {    
+            var price = 0;
+            var pieceCount = 0;
 
-            $("#price").empty();
+            price = $("#price").val();
+            pieceCount = $("#pieceCount").val();    
+
+            console.log(price);
+            console.log(pieceCount);
+
             $("#totalPrice").empty();
 
-            $("#price").append('<span>' + price + '</span>');
             $("#totalPrice").append('<span>' + pieceCount * price + '</span>');
 
         }
 
-
+      
 
         var addWorkToTable = function () {
             var workId = $("#work").val();
@@ -504,18 +514,19 @@
 
 
         var addPieceToTable = function () {
-            var pieceId = $("#piece").val();
+            var pieceId = $("#pieceCombo").val();
             var pieceCount = $("#pieceCount").val();
             var piece = pieceList.find(piece => piece.id == pieceId);
+            var price = $("#price").val();
 
             var rowCount = $("#tablePiece tbody tr").length;
 
             $("#tablePiece tbody").append('<tr val=' + piece.id + '><td>' +
                 (rowCount + 1) + '</td><td> ' +
                 piece.name + "</td ><td class='price'>" +
-                piece.priceTotal + "</td><td class='count'>" +
+                price + "</td><td class='count'>" +
                 pieceCount + "</td><td class='priceTotal'>" +
-                (pieceCount * piece.price) + "</td><td><span class='removePiece'>حدف</span></td></tr>");
+                (pieceCount * price) + "</td><td><span class='removePiece'>حدف</span></td></tr>");
 
 
 
@@ -575,11 +586,15 @@
 
         }
 
+       
+
 
         var init = function () {
 
-            $("#piece").on("change", pieceOnChange);
-            $("#pieceCount").on("keyup", pieceOnChange);
+            $("#pieceCombo").on("change", pieceOnChange);
+            $("#price").on("keyup", piecePriceAndCountChange);
+           
+            $("#pieceCount").on("keyup", piecePriceAndCountChange);
             $("#savePiece").on("click", addPieceToTable);
             $("#saveWork").on("click", addWorkToTable);
             $("#tablePiece").on("click", '.removePiece', removePieceFromTable);

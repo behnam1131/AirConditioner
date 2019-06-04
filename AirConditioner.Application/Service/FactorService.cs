@@ -27,7 +27,8 @@ namespace AirConditioner.Application.Service
             var list = _dbContext.Factors.Select(e => new FactorDto
             {
                 Id = e.Id,
-                ChangeDateTime = e.ChangeDateTime,
+                FactroDateTime = e.FactorDateTime,
+                RegisterDateTime = e.RegisterDateTime,
                 DateFa = e.DateFa,
                 Time = e.Time,
                 Code = e.Code,
@@ -90,7 +91,8 @@ namespace AirConditioner.Application.Service
                 .Select(e => new FactorDto
                 {
                     Id = e.Id,
-                    ChangeDateTime = e.ChangeDateTime,
+                    FactroDateTime = e.FactorDateTime,
+                    RegisterDateTime = e.RegisterDateTime,
                     DateFa = e.DateFa,
                     Time = e.Time,
                     Code = e.Code,
@@ -147,9 +149,10 @@ namespace AirConditioner.Application.Service
 
         public FactorDto Add(FactorDto factorDto)
         {
-            Factor  factor = new Factor
+            Factor factor = new Factor
             {
-                ChangeDateTime = factorDto.ChangeDateTime,
+                FactorDateTime = factorDto.FactroDateTime,
+                RegisterDateTime = DateTime.Now,
                 DateFa = factorDto.DateFa,
                 Time = factorDto.Time,              
                 Comment = factorDto.Comment,
@@ -188,6 +191,9 @@ namespace AirConditioner.Application.Service
                                    });
                     _factorWorkService.Add(factorDto.FactorWorkDtos);
                 }
+
+                var x = _dbContext.FactorPieces.Where(e => e.FactorId == factor.Id).ToList();
+
 
                 return GetById(factor.Id);
             }

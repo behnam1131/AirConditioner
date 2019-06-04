@@ -77,8 +77,8 @@ namespace AirConditioner.Web.Controllers
             var factor = _factorService.Add(factorDto);
 
 
-            var s = Newtonsoft.Json.JsonConvert.SerializeObject(factor);
-            TempData["factorNew"] = s;
+            var facorJson = Newtonsoft.Json.JsonConvert.SerializeObject(factor);
+            TempData["factorNew"] = facorJson;
             
 
             return RedirectToAction("DisplayFactorCode");
@@ -87,10 +87,10 @@ namespace AirConditioner.Web.Controllers
         public IActionResult DisplayFactorCode()
         {
 
-            if (TempData["factorNew"] is string s)
+            if (TempData["factorNew"] is string facorJson)
             {
-                var newUser = Newtonsoft.Json.JsonConvert.DeserializeObject<FactorDto>(s);
-                return View(newUser);
+                var newFacorJson = Newtonsoft.Json.JsonConvert.DeserializeObject<FactorDto>(facorJson);
+                return View(newFacorJson);
             }
            
             return RedirectToAction("Index");

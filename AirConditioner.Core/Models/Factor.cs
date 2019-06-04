@@ -9,7 +9,8 @@ namespace AirConditioner.Core.Models
         public int Code { get; set; }
         public string DateFa { get; set; }
         public string Time { get; set; }
-        public DateTime ChangeDateTime { get; set; }
+        public DateTime FactorDateTime { get; set; }
+        public DateTime RegisterDateTime { get; set; }
         public string Comment { get; set; }
 
 
