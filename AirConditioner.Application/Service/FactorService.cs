@@ -190,10 +190,7 @@ namespace AirConditioner.Application.Service
                                        e.FactorId = factor.Id;
                                    });
                     _factorWorkService.Add(factorDto.FactorWorkDtos);
-                }
-
-                var x = _dbContext.FactorPieces.Where(e => e.FactorId == factor.Id).ToList();
-
+                }               
 
                 return GetById(factor.Id);
             }

@@ -35,9 +35,29 @@ namespace AirConditioner.Web.Controllers
         [HttpPost]
         public IActionResult Add(CustomerDto customerDto)
         {
-            var flag = _customerService.Add(customerDto);
+            var customerDtoNew = _customerService.Add(customerDto);
 
-            return RedirectToAction("Index");
+            var customerJson = Newtonsoft.Json.JsonConvert.SerializeObject(customerDtoNew);
+            TempData["customerJson"] = customerJson;
+
+
+            return RedirectToAction("DisplayCustomerCode");
+
+           
+        }
+
+        public IActionResult DisplayCustomerCode()
+        {
+           
+
+                if (TempData["customerJson"] is string customerJson)
+                {
+                    var newCustomerJson = Newtonsoft.Json.JsonConvert.DeserializeObject<CustomerDto>(customerJson);
+                    return View(newCustomerJson);
+                }
+
+                return RedirectToAction("Index");
+            
         }
     }
 }

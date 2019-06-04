@@ -48,13 +48,28 @@ namespace AirConditioner.Application.Service
             return list;
         }
 
+        public CustomerDto GetById(int factorId)
+        {
+            var customerDto = _dbContext.Customers
+                .Where(e=>e.Id== factorId)
+                .Select(e => new CustomerDto
+            {
+                Id = e.Id,
+                Name = e.Name,
+                Code = e.Code,
+                Address = e.Address,
+                Phone = e.Phone
+            }).FirstOrDefault();
 
-        public bool Add(CustomerDto customerDto)
+            return customerDto;
+        }
+
+
+        public CustomerDto Add(CustomerDto customerDto)
         {
             Customer customer = new Customer
             {
                 Name = customerDto.Name,
-                Code=customerDto.Code,
                 Address = customerDto.Address,
                 
                 Phone = customerDto.Phone
@@ -63,13 +78,26 @@ namespace AirConditioner.Application.Service
             {
                 _dbContext.Customers.Add(customer);
                 _dbContext.SaveChanges();
-                return true;
+
+
+                var customerEntity = _dbContext.Customers.Find(customer.Id);
+                customerEntity.Code = GetCode(customer).ToString();
+
+                _dbContext.SaveChanges();
+
+                return GetById(customer.Id);
 
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
+        }
+        public int GetCode(Customer customer)
+        {
+            int customerId = _dbContext.Customers.Find(customer.Id).Id;
+
+            return customerId == 0 ? 1000 : (1000 + customerId);
         }
     }
 }

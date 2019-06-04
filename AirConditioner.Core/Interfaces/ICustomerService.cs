@@ -8,7 +8,8 @@ namespace AirConditioner.Core.Interfaces
 {
     public interface ICustomerService
     {
-        bool Add(CustomerDto customerDto);
+        CustomerDto Add(CustomerDto customerDto);
+        CustomerDto GetById(int factorId);
         List<CustomerDto> GetAll();
         IQueryable<CustomerDto> GetQuery();
     }
