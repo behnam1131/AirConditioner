@@ -62,7 +62,7 @@ namespace AirConditioner.Web.Controllers
             ViewBag.UserOperatorList = new SelectList(_userOperatorService.GetAll(), "Id", "Name");
             ViewBag.UserTechnicianList = new SelectList(_userTechnicianService.GetAll(), "Id", "Name");
             ViewBag.UserAssistantList = new SelectList(_userAssistantService.GetAll(), "Id", "Name");
-            ViewBag.CustomerList = new SelectList(_customerService.GetAll(), "Id", "Name");
+            ViewBag.CustomerList =_customerService.GetAll();
 
             ViewBag.PieceList = _pieceService.GetAll();
           
