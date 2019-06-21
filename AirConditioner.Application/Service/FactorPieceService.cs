@@ -72,7 +72,7 @@ namespace AirConditioner.Application.Service
                 IsChange = e.IsChange,
                 FactorId = e.FactorId,
                 PriceOne = e.PriceOne,
-                PriceTotal = e.PriceTotal,
+                PriceTotal = e.PriceOne * e.Value,
                 PieceId = e.PieceId,
                 Value = e.Value,
                 PieceName=e.PieceName
