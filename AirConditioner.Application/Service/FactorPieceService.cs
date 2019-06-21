@@ -30,6 +30,7 @@ namespace AirConditioner.Application.Service
                 PriceTotal = e.PriceTotal,
                 PieceId = e.PieceId,
                 Value = e.Value,
+                PieceName=e.PieceName
             }).ToList();
 
             return list;
@@ -47,6 +48,7 @@ namespace AirConditioner.Application.Service
                 PriceTotal = factorPieceDto.PriceTotal,
                 PieceId = factorPieceDto.PieceId,
                 Value = factorPieceDto.Value,
+                PieceName=factorPieceDto.PieceName
             };
             try
             {
@@ -73,6 +75,7 @@ namespace AirConditioner.Application.Service
                 PriceTotal = e.PriceTotal,
                 PieceId = e.PieceId,
                 Value = e.Value,
+                PieceName=e.PieceName
             }).ToList();
 
             try

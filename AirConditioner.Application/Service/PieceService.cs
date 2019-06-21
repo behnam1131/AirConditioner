@@ -13,13 +13,11 @@ namespace AirConditioner.Application.Service
     public class PieceService : IPieceService
     {
         private readonly ApplicationDbContext _dbContext;
-        private readonly IPiecePercentService _piecePercenService;
-        private readonly IPiecePriceService _piecePriceService;
-        public PieceService(ApplicationDbContext dbContext, IPiecePriceService piecePriceService, IPiecePercentService piecePercenService)
+        private readonly IPieceCostService _pieceCostService;
+        public PieceService(ApplicationDbContext dbContext, IPieceCostService pieceCostService)
         {
             _dbContext = dbContext;
-            _piecePercenService = piecePercenService;
-            _piecePriceService = piecePriceService;
+            _pieceCostService = pieceCostService;
         }
 
         public async Task<Piece> Find(int id)
@@ -36,46 +34,29 @@ namespace AirConditioner.Application.Service
                 {
                     Id = e.Id,
                     Name =e.Name,
-                    Percent=e.Percent,
-                    Price=e.Price
+                    Price= e.PieceCosts.Where(q => q.FromDateTime == e.PieceCosts.Max(w => w.FromDateTime)).FirstOrDefault().Price,
+                    PercentColleague =e.PieceCosts.Where(q=>q.FromDateTime==e.PieceCosts.Max(w=>w.FromDateTime)).FirstOrDefault().PercentColleague,
+                    PercentCustomer= e.PieceCosts.Where(q => q.FromDateTime == e.PieceCosts.Max(w => w.FromDateTime)).FirstOrDefault().PercentCustomer,
                 }).ToList();
 
             return list;
-        }
-
-        public async Task<List<PieceDto>> GetAsync(int count)
-        {
-            var list = await _dbContext.Pieces.OrderByDescending(e=>e.Id)
-                .Select(e=> new PieceDto
-                {
-                    Id = e.Id,
-                    Name = e.Name,
-                    Percent = e.Percent,
-                    Price = e.Price
-                })
-                .Take(count)
-                .ToListAsync();
-
-            return list;
-        }
+        }       
 
         public bool Add(PieceDto pieceDto)
         {
+            var dateNow = DateTime.Now;
+            
             Piece piece = new Piece()
             {
                 Id = pieceDto.Id,
                 Name = pieceDto.Name,
-                Percent = pieceDto.Percent,
-                Price = pieceDto.Price
             };
             try
             {
                 _dbContext.Pieces.Add(piece);
                 _dbContext.SaveChanges();
-
-                _piecePercenService.Add(piece.Percent, piece.Id);
-                _piecePriceService.Add(piece.Price, piece.Id);
-
+                _pieceCostService.Add(pieceDto.Price, pieceDto.PercentCustomer, pieceDto.PercentColleague, piece.Id);
+                
                 return true;
             }
             catch (Exception ex)
@@ -94,14 +75,8 @@ namespace AirConditioner.Application.Service
             try
             {
                 _dbContext.Pieces.Attach(piece);
-
-                piece.Percent = pieceDto.Percent;
-                piece.Price = pieceDto.Price;
-
-                _dbContext.SaveChanges();              
-
-                _piecePercenService.Add(piece.Percent, piece.Id);
-                _piecePriceService.Add(piece.Percent, piece.Id);
+                _dbContext.SaveChanges();
+                _pieceCostService.Add(pieceDto.Price, pieceDto.PercentCustomer, pieceDto.PercentColleague, piece.Id);               
 
                 return true;
             }
@@ -109,11 +84,6 @@ namespace AirConditioner.Application.Service
             {
                 return false;
             }            
-        }
-
-        public void Add(List<FactorPieceDto> factorPieceDtos)
-        {
-            throw new NotImplementedException();
-        }
+        }       
     }
 }

@@ -10,8 +10,7 @@ namespace AirConditioner.Application.DependencyInjection
         {
             services.AddTransient<IPieceService, PieceService>();
             services.AddTransient<ITimeManager, UtcTimeManager>();
-            services.AddTransient<IPiecePriceService, PiecePriceService>();
-            services.AddTransient<IPiecePercentService, PiecePercentService>();
+            services.AddTransient<IPieceCostService, PieceCostService>();
             services.AddTransient<ICustomerService, CustomerService>();
             services.AddTransient<IEngineVolumeService, EngineVolumeService>();
             services.AddTransient<IFactorPieceService, FactorPieceService>();

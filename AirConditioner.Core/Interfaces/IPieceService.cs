@@ -9,10 +9,10 @@ namespace AirConditioner.Core.Interfaces
     {
         Task<Piece> Find(int id);
 
-        Task<List<PieceDto>> GetAsync(int count);
         List<PieceDto> GetAll();
+        
         bool Add(PieceDto pieceDto);
-        void Add(List<FactorPieceDto> factorPieceDtos);
+        
     }
 
 }
