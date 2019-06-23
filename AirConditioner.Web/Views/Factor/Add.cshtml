@@ -483,7 +483,7 @@
 
         var pieceOnChange = function () {
             var pieceId = $("#pieceCombo").val();
-            var price = pieceList.find(piece => piece.id == pieceId).priceTotal;
+            var price = pieceList.find(piece => piece.id == pieceId).priceCustomer;
 
             $("#price:text").val(price);
 
