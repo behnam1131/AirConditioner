@@ -75,8 +75,10 @@ namespace AirConditioner.Application.Service
             if (pieceCost != null)
             {
                 pieceCost.ToDateTime = DateTimeNow;
+                _dbContext.PieceCosts.Update(pieceCost);
             }
 
+            
 
             PieceCost PieceCostNew = new PieceCost()
             {               
@@ -89,6 +91,7 @@ namespace AirConditioner.Application.Service
             };
             try
             {
+                
                 _dbContext.PieceCosts.Add(PieceCostNew);
                 _dbContext.SaveChanges();
 

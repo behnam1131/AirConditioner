@@ -35,15 +35,20 @@ namespace AirConditioner.Web.Controllers
             return View();
         }
 
-        //public async Task<IActionResult> Index()
-        //{
-        //    var list = await _pieceService.GetAllAsync();
+        public IActionResult Edit(int id)
+        {
+            var piece=_pieceService.GetById(id);
+            return View(piece);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(PieceDto pieceDto)
+        {
+            _pieceService.Update(pieceDto);
 
 
-        //    return View(list);
-
-        //    //return Json(_timeManager.Current);
-        //}
+            return RedirectToAction("Index", "Piece");
+        }
 
 
 

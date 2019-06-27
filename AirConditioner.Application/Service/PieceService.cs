@@ -20,9 +20,20 @@ namespace AirConditioner.Application.Service
             _pieceCostService = pieceCostService;
         }
 
-        public async Task<Piece> Find(int id)
+        public PieceDto GetById(int id)
         {
-            var found = await _dbContext.Pieces.FindAsync(id);
+            var found = _dbContext.PieceCosts
+                .Where(e=>e.PieceId== id)
+                .Where(e => e.ToDateTime == null)
+               .Select(e => new PieceDto
+               {
+                   Id = e.PieceId,
+                   Name = e.Piece.Name,
+                   Price = e.Price,
+
+                   PercentColleague = e.PercentColleague,
+                   PercentCustomer = e.PercentCustomer,
+               }).FirstOrDefault();
 
             return found;
         }
@@ -38,18 +49,21 @@ namespace AirConditioner.Application.Service
             //        PercentColleague =e.PieceCosts.Where(q=>q.FromDateTime==e.PieceCosts.Max(w=>w.FromDateTime)).FirstOrDefault().PercentColleague,
             //        PercentCustomer= e.PieceCosts.Where(q => q.FromDateTime == e.PieceCosts.Max(w => w.FromDateTime)).FirstOrDefault().PercentCustomer,
             //    }).ToList();
+ //var ddd1 = _dbContext.PieceCosts.ToList();
 
-            var ddd = _dbContext.Pieces.ToList();
-            //_dbContext.Pieces.RemoveRange(ddd);
-            //_dbContext.SaveChanges();
+       
 
-            var ddd11 = _dbContext.Factors.ToList();
-            //_dbContext.Factors.RemoveRange(ddd11);
-            //_dbContext.SaveChanges();
+ //           _dbContext.PieceCosts.RemoveRange(ddd1);
+ //           _dbContext.SaveChanges();
+ //           var ddd = _dbContext.Pieces.ToList();
+ //           _dbContext.Pieces.RemoveRange(ddd);
+ //           _dbContext.SaveChanges();
 
-            var ddd1 = _dbContext.PieceCosts.ToList();
-            //_dbContext.PieceCosts.RemoveRange(ddd1);
-            //_dbContext.SaveChanges();
+ //           var ddd11 = _dbContext.Factors.ToList();
+ //           _dbContext.Factors.RemoveRange(ddd11);
+ //           _dbContext.SaveChanges();
+
+           
 
 
             var list = _dbContext.PieceCosts.Where(e=>e.ToDateTime== null)

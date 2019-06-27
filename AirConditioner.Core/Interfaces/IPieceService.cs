@@ -7,12 +7,14 @@ namespace AirConditioner.Core.Interfaces
 {
     public interface IPieceService
     {
-        Task<Piece> Find(int id);
+        PieceDto GetById(int id);
 
         List<PieceDto> GetAll();
         
         bool Add(PieceDto pieceDto);
-        
+        bool Update(PieceDto pieceDto);
+
+
     }
 
 }

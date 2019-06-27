@@ -1,0 +1,48 @@
+﻿@model AirConditioner.Core.Dtos.PieceDto
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<h4>ویرایش قیمت قطعه</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+               
+                <input  type="hidden" asp-for="Id" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input  asp-for="Name" class="form-control" disabled />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>    
+            <div class="form-group">
+                <label asp-for="PercentCustomer" class="control-label"></label>
+                <input asp-for="PercentCustomer" class="form-control" />
+                <span asp-validation-for="PercentCustomer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PercentColleague" class="control-label"></label>
+                <input asp-for="PercentColleague" class="form-control" />
+                <span asp-validation-for="PercentColleague" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="ذخیره" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">بازگشت</a>
+</div>
+
