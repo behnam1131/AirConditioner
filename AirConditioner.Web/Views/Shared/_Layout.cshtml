@@ -44,6 +44,11 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body class="page-header-fixed" style="font-family:'B Mitra'">
+    <div id="loading" style="display:none">
+        <div style="position: fixed; width: 100%; height: 100%; z-index: 100; background-color: black; opacity: 0.1;filter: alpha(opacity=10);"></div>
+        <img src="~/image/ajax-loader.gif" style="position: fixed; top: 50%; right: 50%;" />
+    </div>
+
     <!-- BEGIN HEADER -->
     <div class="header navbar navbar-inverse navbar-fixed-top">
         <!-- BEGIN TOP NAVIGATION BAR -->
@@ -184,6 +189,12 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
                         <span class="title">نصاب</span>
                     </a>
                 </li>
+                <li class="">
+                    <a href="@Url.Action("index","UserFactor")">
+                        <i class="icon-home"></i>
+                        <span class="title">گزارشات</span>
+                    </a>
+                </li>
             </ul>
             <!-- END SIDEBAR MENU -->
         </div>
@@ -223,7 +234,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
     <script src="~/lib/assets/scripts/app.js"></script>
 
-  
+
     <script>
         jQuery(document).ready(function () {
             App.init();

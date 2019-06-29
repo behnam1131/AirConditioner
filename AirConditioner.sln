@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirConditioner.Application"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirConditioner.Application.DependencyInjection", "AirConditioner.Application.DependencyInjection\AirConditioner.Application.DependencyInjection.csproj", "{6D0E90AB-4F00-4FB3-A822-559281C1D58D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirConditioner.Helper", "AirConditioner.Helper\AirConditioner.Helper.csproj", "{155578D3-768D-4825-9DD4-3C82FF6CD67E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirConditioner.Helper", "AirConditioner.Helper\AirConditioner.Helper.csproj", "{987489A2-DE2C-437D-A8CC-4C4221ACE06D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{6D0E90AB-4F00-4FB3-A822-559281C1D58D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D0E90AB-4F00-4FB3-A822-559281C1D58D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D0E90AB-4F00-4FB3-A822-559281C1D58D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{155578D3-768D-4825-9DD4-3C82FF6CD67E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{155578D3-768D-4825-9DD4-3C82FF6CD67E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{155578D3-768D-4825-9DD4-3C82FF6CD67E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{155578D3-768D-4825-9DD4-3C82FF6CD67E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{987489A2-DE2C-437D-A8CC-4C4221ACE06D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{987489A2-DE2C-437D-A8CC-4C4221ACE06D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{987489A2-DE2C-437D-A8CC-4C4221ACE06D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{987489A2-DE2C-437D-A8CC-4C4221ACE06D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

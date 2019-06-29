@@ -1,0 +1,129 @@
+﻿@using AirConditioner.Helper
+@model IEnumerable<AirConditioner.Core.Dtos.FactorDto>
+
+    @{
+    ViewData["Title"] = "UserOperatorFactor";
+    }
+
+    @section Styles
+    {
+        <link href="~/lib/bootstrap-jalali-datepicker-master/bootstrap-datepicker.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap-datetimepicker-0.0.11/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+
+    }
+
+
+    <h1>کارههای انجام شده</h1>  
+
+    <div class="row">
+        <div class="form-group col-md-3">
+            <label for="Actor" class="control-label col-sm-2">سمت:</label>
+            <div class="col-sm-10">
+                <select id="Actor" class="form-control " asp-items="Html.GetEnumSelectList<Actor>()">
+                    <option selected="selected" value="">انتخاب کنید</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-md-3">
+            <label class="control-label col-sm-2">نام:</label>
+            <div class="col-sm-10">
+                <select id="user" class="form-control"></select>
+            </div>
+        </div>
+        <div class="form-group col-md-3">
+            <label class="control-label col-sm-2" style="padding: 0px;">از تاریخ:</label>
+            <div class="col-sm-10">
+                <input type="text" id="fromDate" class="form-control" data-mddatetimepicker="true" />
+            </div>
+        </div>
+        <div class="form-group col-md-3">
+            <label class="control-label col-sm-2" style="padding: 0px;">تا تاریخ:</label>
+            <div class="col-sm-10">
+                <input type="text" id="toDate" class="form-control" data-mddatetimepicker="true" />
+            </div>
+        </div>
+
+    </div>
+    <div style="text-align:center">
+        <button type="button" style="width:25%" id="search" class="btn btn-primary">جستجو</button>
+    </div>
+
+
+    <table class="table" style="direction:rtl">
+        <thead>
+            <tr>
+                <th>
+                    ردیف
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Code)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateFa)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Time)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Comment)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AirConditionerModelName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EngineVolumeName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserExpertName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserOperatorName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserTechnicianName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserAssistantName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CustomerName)
+                </th>
+            </tr>
+        </thead>
+        <tbody id="factorBodyTable">
+          
+           
+
+        </tbody>
+    </table>
+
+
+    @section Scripts
+    {
+
+        <script src="~/lib/bootstrap-jalali-datepicker-master/bootstrap-datepicker.js"></script>
+        <script src="~/lib/bootstrap-jalali-datepicker-master/bootstrap-datepicker.fa.js"></script>
+
+        <script src="~/js/App/userFactor/userFactor.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#fromDate , #toDate").datepicker({
+                    isRTL: true,
+                    dateFormat: "yy/mm/dd",
+                    changeMonth: true,
+                    changeYear: true,
+                    showAnim: 'slideDown',
+
+                });
+
+                //$("#toDate").datepicker({
+                //    isRTL: true,
+                //    dateFormat: "yy/mm/dd",
+                //    changeMonth: true,
+                //    changeYear: true,
+                //    showAnim: 'slideDown'
+                //});
+            });
+        </script>
+
+    }

@@ -2,6 +2,7 @@
 using AirConditioner.Core.Interfaces;
 using AirConditioner.Core.Models;
 using AirConditioner.Data;
+using AirConditioner.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -151,9 +152,10 @@ namespace AirConditioner.Application.Service
         {
             Factor factor = new Factor
             {
-                FactorDateTime = factorDto.FactroDateTime,
+                FactorDateTime = factorDto.DateFa.ConvertToDateTime(),
                 RegisterDateTime = DateTime.Now,
                 DateFa = factorDto.DateFa,
+                
                 Time = factorDto.Time,              
                 Comment = factorDto.Comment,
                 CustomerId = factorDto.CustomerId,                
@@ -216,6 +218,99 @@ namespace AirConditioner.Application.Service
                 _dbContext.Remove(e);
             });
             _dbContext.SaveChanges();
+        }
+
+        public List<FactorDto> GetUserFactors(Actor actor,int userId,string fromDate,string toDate)
+        {
+            var queryFactor = _dbContext.Factors.AsQueryable();
+
+
+
+            switch (actor)
+            {
+                case Actor.UserAssistant:
+                    queryFactor = queryFactor.Where(e => e.UserAssistantId == userId).AsQueryable();
+                    break;
+                case Actor.UserExpert:
+                    queryFactor = queryFactor.Where(e => e.UserExpertId == userId).AsQueryable();
+                    break;
+                case Actor.UserOperator:
+                    queryFactor = queryFactor.Where(e => e.UserOperatorId == userId).AsQueryable();
+                    break;
+                case Actor.UserTechnician:
+                    queryFactor = queryFactor.Where(e => e.UserTechnicianId == userId).AsQueryable();
+                    break;
+            }
+            
+
+            if (!String.IsNullOrWhiteSpace(fromDate))
+            {
+                DateTime fromDateTime = fromDate.ConvertToDateTime();
+                queryFactor = queryFactor.Where(e => e.FactorDateTime >= fromDateTime).AsQueryable();
+            }
+            if (!String.IsNullOrWhiteSpace(toDate))
+            {
+                DateTime ToDateTime=toDate.ConvertToDateTime();
+                queryFactor = queryFactor.Where(e => e.FactorDateTime <= ToDateTime).AsQueryable();
+            }
+
+            var Factors = queryFactor.Select(e => new FactorDto()
+            {
+                Id = e.Id,
+                FactroDateTime = e.FactorDateTime,
+                RegisterDateTime = e.RegisterDateTime,
+                DateFa = e.DateFa,
+                Time = e.Time,
+                Code = e.Code,
+                Comment = e.Comment,
+
+                CustomerId = e.CustomerId,
+                CustomerName = e.Customer.Name,
+
+                EngineVolumeId = e.EngineVolumeId,
+                EngineVolumeName = e.EngineVolume.Name,
+
+                UserAssistantId = e.UserAssistantId,
+                UserAssistantName = e.UserAssistant.Name,
+
+                UserExpertId = e.UserExpertId,
+                UserExpertName = e.UserExpert.Name,
+
+                UserOperatorId = e.UserOperatorId,
+                UserOperatorName = e.UserOperator.Name,
+
+                UserTechnicianId = e.UserTechnicianId,
+                UserTechnicianName = e.UserTechnician.Name,
+
+                AirConditionerModelId = e.AirConditionerModelId,
+                AirConditionerModelName = e.AirConditionerModel.Name,
+
+                FactorPieceDtos = e.FactorPiecePrices.Select(q => new FactorPieceDto
+                {
+                    Id = q.Id,
+                    Comment = q.Comment,
+                    IsChange = q.IsChange,
+                    FactorId = q.FactorId,
+                    PriceOne = q.PriceOne,
+                    PriceTotal = q.PriceTotal,
+                    PieceId = q.PieceId,
+                    PieceName = q.Piece.Name,
+                    Value = q.Value,
+
+                }).ToList(),
+                FactorWorkDtos = e.FactorWorks.Select(q => new FactorWorkDto
+                {
+                    Id = q.Id,
+                    Comment = q.Comment,
+                    Price = q.Price,
+                    WorkId = q.WorkId,
+                    WorkName = q.Work.Name
+
+                }).ToList()
+
+            }).ToList();
+
+            return Factors;
         }
 
     }

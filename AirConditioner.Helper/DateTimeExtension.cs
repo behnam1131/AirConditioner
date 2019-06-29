@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace AirConditioner.Helper
 {
@@ -23,13 +19,11 @@ namespace AirConditioner.Helper
 
         public static DateTime ConvertToDateTime(this string input)
         {
-            var dateTime = Regex.Split(input, "-");
-            string[] date = Regex.Split(dateTime[0], "/");
-            string[] time = Regex.Split(dateTime[0], ":");
+            string[] time = Regex.Split(input, "/");
 
-            int year = Convert.ToInt32(date[0]);
-            int month = Convert.ToInt32(date[1]);
-            int day = Convert.ToInt32(date[2]);
+            int year = Convert.ToInt32(time[0]);
+            int month = Convert.ToInt32(time[1]);
+            int day = Convert.ToInt32(time[2]);
 
             var pCalendar = new PersianCalendar();
             DateTime gDate = pCalendar.ToDateTime(year, month, day, 0, 0, 0, 0);

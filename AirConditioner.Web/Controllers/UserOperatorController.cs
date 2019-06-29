@@ -36,5 +36,7 @@ namespace AirConditioner.Web.Controllers
 
             return RedirectToAction("Index");
         }
+
+        
     }
 }
